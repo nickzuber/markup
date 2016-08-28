@@ -9,7 +9,7 @@ const http = require('http');
 const express = require('express');
 
 // dev server
-const webpackConfig = require('./webpack.development.config');
+const webpackConfig = require('./webpack.dev.config');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');

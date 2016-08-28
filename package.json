@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "Markdown editing platform that supports MathJax and Kramdown markups.",
   "main": "server.js",
-	"scripts": {
-		"serve": "webpack --config webpack.production.config.js && node index.js",
-		"dev": "webpack --config webpack.development.config.js && node devIndex.js",
-		"ci": "./node_modules/.bin/eslint --config .eslintrc src/**/*.js",
-		"lint": "./node_modules/.bin/eslint --config .eslintrc src/**/*.js"
-	},
+  "scripts": {
+    "serve": "webpack --config webpack.config.js && node server.js || true",
+    "dev": "webpack --config webpack.dev.config.js && node server.dev.js || true",
+    "ci": "./node_modules/.bin/eslint --config .eslintrc src/**/*.js || true",
+    "lint": "./node_modules/.bin/eslint --config .eslintrc src/**/*.js || true"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/nickzuber/mark-up.git"
@@ -39,8 +39,10 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-2": "^6.5.0",
+    "eslint": "^3.4.0",
     "eslint-plugin-react": "^5.1.1",
     "eventsource-polyfill": "^0.9.6",
+    "jquery": "^3.1.0",
     "react-hot-loader": "^1.3.0",
     "redux-logger": "^2.6.1",
     "webpack": "^1.13.1",

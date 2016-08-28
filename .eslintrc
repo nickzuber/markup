@@ -22,5 +22,9 @@ rules:
 
 parserOptions:
   sourceType: module
+  ecmaVersion: 6
+  ecmaFeatures:
+    jsx: true
+    experimentalObjectRestSpread: true
 
 strict: 1
