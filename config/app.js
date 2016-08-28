@@ -16,7 +16,7 @@ exports.env = DEV_FLAG ? Environments.DEV : Environments.PROD;
 switch (exports.env) {
   case Environments.DEV:
     env_server = {
-      port: 8080,
+      port: 4000,
       ip: '127.0.0.1',
       domain: 'localhost'
     }
