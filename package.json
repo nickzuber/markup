@@ -1,0 +1,66 @@
+{
+  "name": "mark-up",
+  "version": "1.0.0",
+  "description": "Markdown editing platform that supports MathJax and Kramdown markups.",
+  "main": "server.js",
+	"scripts": {
+		"serve": "webpack --config webpack.production.config.js && node index.js",
+		"dev": "webpack --config webpack.development.config.js && node devIndex.js",
+		"ci": "./node_modules/.bin/eslint --config .eslintrc src/**/*.js",
+		"lint": "./node_modules/.bin/eslint --config .eslintrc src/**/*.js"
+	},
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/nickzuber/mark-up.git"
+  },
+  "keywords": [
+    "markup",
+    "mark",
+    "up",
+    "markdown",
+    "kramdown",
+    "mathjax",
+    "math",
+    "jax",
+    "down"
+  ],
+  "author": "Nick Zuber <zuber.nicholas@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nickzuber/mark-up/issues"
+  },
+  "homepage": "https://github.com/nickzuber/mark-up#readme",
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-stage-2": "^6.5.0",
+    "eslint-plugin-react": "^5.1.1",
+    "eventsource-polyfill": "^0.9.6",
+    "react-hot-loader": "^1.3.0",
+    "redux-logger": "^2.6.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-hot-middleware": "^2.10.0"
+  },
+  "dependencies": {
+    "@fdaciuk/ajax": "^2.1.2",
+    "backbone": "^1.3.3",
+    "express": "^4.13.4",
+    "jade": "^1.11.0",
+    "lodash": "^4.13.1",
+    "moment": "^2.13.0",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0",
+    "reselect": "^2.5.1",
+    "shortid": "^2.2.6"
+  }
+}

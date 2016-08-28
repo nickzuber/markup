@@ -1,0 +1,15 @@
+extends ./base.jade
+
+block scripts
+  meta(name='viewport', content='width=device-width, height=device-height, minimum-scale=1.0, initial-scale=1.0, user-scalable=0')
+  meta(itemprop='image', content='img/ico.png')
+  link(rel='icon', href='img/ico.png', type='image/png')
+  link(rel='shortcut icon', href='img/ico.png', type='image/png')
+  link(rel='stylesheet', href='/css/app.css')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css')
+  link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,400italic')
+
+block content
+  div(id='app')
+
+  script(src='/js/app.bundle.js')
