@@ -1,0 +1,17 @@
+
+$green: #02b875;
+$white: #ffffff;
+
+body {
+  background-color: $white;
+}
+
+.-document-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $green;
+  display: block;
+  width: 100%;
+  min-height: 150px;
+}

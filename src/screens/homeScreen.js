@@ -2,26 +2,27 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import {updateDocumentText} from '../actions/documentActions';
+import {bindActionCreators} from 'redux';
+import Banner from '../components/banner';
+import * as DocumentActions from '../actions/documentActions';
 
 class HomeScreen extends React.Component {
 
   render() {
-    console.warn(this.props);
     return (
       <div>
-        <p onClick={() => {
-          this.props.dispatch(updateDocumentText('test'));
-        }}>
-          home
-        </p>
+        <Banner />
       </div>
     );
   }
 };
 
+const actions = (dispatch) => ({
+  documentActions: bindActionCreators(DocumentActions, dispatch)
+});
+
 const selector = (state) => ({
   appState: state
 });
 
-export default connect(selector)(HomeScreen);
+export default connect(actions, selector)(HomeScreen);

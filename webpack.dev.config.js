@@ -16,14 +16,16 @@ module.exports = {
     publicPath: 'http://localhost:4000/public/'
   },
   module: {
-    loaders: [{
-      test: /.jsx?$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/,
-      query: {
-        presets: ['es2015', 'react', 'stage-2', 'react-hmre']
+    loaders: [
+      {
+        test: /.jsx?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015', 'react', 'stage-2', 'react-hmre']
+        }
       }
-    }]
+    ]
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
