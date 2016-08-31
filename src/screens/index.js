@@ -29,7 +29,7 @@ class App extends React.Component {
       case 'home':
         return <HomeScreen />;
       case 'edit':
-        return <DocumentScreen />
+        return <DocumentScreen />;
       default:
         return <HomeScreen />;
     }

@@ -1,5 +1,6 @@
 
 @import '../utilities/colors';
+@import '../utilities/mixins';
 
 .-document-banner {
   position: fixed;
@@ -9,6 +10,7 @@
   display: block;
   width: 100%;
   min-height: 100px;
+  @include transition(325ms);
 
   .-banner-title {
     font-family: 'Poppins', sans-serif;
@@ -16,11 +18,15 @@
     font-size: 46px;
     letter-spacing: 1px;
     margin: 0 auto;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .-banner-upper {
     text-align: center;
   }
 
   .-banner-lower {
-
     ul {
       text-align: center;
       font-size: 13px;

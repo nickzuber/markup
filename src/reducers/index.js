@@ -1,7 +1,9 @@
 'use strict';
 
-import editDocument from './editDocument';
+import document from './editDocument';
+import modes from './modes';
 
 export default {
-  editDocument
+  modes,
+  document
 };

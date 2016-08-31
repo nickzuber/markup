@@ -2,6 +2,14 @@
 @import '../utilities/colors';
 @import '../utilities/mixins';
 
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .-loading-end {
   animation-name: finishAndExit;
 	-webkit-animation-name: finishAndExit;

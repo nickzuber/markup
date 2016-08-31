@@ -1,28 +1,49 @@
 'use strict';
 
 import React from 'react';
+import router from '../router';
 
-const Mode = {
+export const Mode = {
   HIDDEN: 'HIDDEN',
   SHORT:  'SHORT',
   FULL:   'FULL'
-}
+};
+
+const propTypes = {
+  viewMode: React.PropTypes.string
+};
+
+const defaultProps = {
+  viewMode: Mode.HIDDEN
+};
 
 class Banner extends React.Component {
 
-  static propTypes = {
-    viewMode: React.PropTypes.string
-  }
-
-  static defaultProps = {
-    viewMode: Mode.HIDDEN
+  getPosition () {
+    switch (this.props.viewMode) {
+      case Mode.HIDDEN:
+        return {transform: 'translateY(-100%)'};
+      case Mode.SHORT:
+        return {transform: 'translateY(-65%)'};
+      case Mode.FULL:
+      default:
+        return {transform: 'translateY(0)'};
+    }
   }
 
   render () {
     return (
-      <div className="-document-banner">
-        <div className="">
-          <h1 className="-banner-title">markup</h1>
+      <div
+        className="-document-banner"
+        style={this.getPosition()}
+      >
+        <div className="-banner-upper">
+          <h1
+            className="-banner-title noselect"
+            onClick={() => router.navigate('/', {trigger: true})}
+          >
+            markup
+          </h1>
         </div>
 
         <div className="-banner-lower">
@@ -41,5 +62,8 @@ class Banner extends React.Component {
     );
   }
 }
+
+Banner.propTypes = propTypes;
+Banner.defaultProps = defaultProps;
 
 export default Banner;
