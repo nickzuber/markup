@@ -5,18 +5,14 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Banner from '../components/banner';
 import * as DocumentActions from '../actions/documentActions';
-import router from '../router';
 
 class HomeScreen extends React.Component {
 
   render() {
     return (
       <div>
-        <p onClick={() => {
-          router.navigate('/edit', {trigger: true});
-        }}>
-          document
-        </p>
+        <Banner />
+        
       </div>
     );
   }

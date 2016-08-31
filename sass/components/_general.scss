@@ -1,0 +1,39 @@
+
+@import '../utilities/colors';
+@import '../utilities/mixins';
+
+.-loading-end {
+  animation-name: finishAndExit;
+	-webkit-animation-name: finishAndExit;
+	animation-duration: 1500ms;
+	-webkit-animation-duration: 1500ms;
+	animation-timing-function: cubic-bezier(.2,0,.2,1);
+	-webkit-animation-timing-function: cubic-bezier(.2,0,.2,1);
+	visibility: visible !important;
+}
+
+@keyframes finishAndExit {
+  0% {
+    width: 50%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 100%;
+    top: -2px;
+  }
+}
+
+@-webkit-keyframes finishAndExit {
+  0% {
+    width: 50%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 100%;
+    top: -2px;
+  }
+}

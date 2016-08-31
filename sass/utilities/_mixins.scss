@@ -1,0 +1,6 @@
+
+@mixin transition ($ms) {
+  -webkit-transition: all $ms cubic-bezier(.2,0,.2,1);
+     -moz-transition: all $ms cubic-bezier(.2,0,.2,1);
+          transition: all $ms cubic-bezier(.2,0,.2,1);
+}

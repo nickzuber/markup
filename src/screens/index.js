@@ -7,6 +7,7 @@ import router from '../router';
 import store from '../store';
 
 import HomeScreen from './homeScreen';
+import DocumentScreen from './documentScreen';
 
 class App extends React.Component {
 
@@ -27,6 +28,8 @@ class App extends React.Component {
     switch(router.current) {
       case 'home':
         return <HomeScreen />;
+      case 'edit':
+        return <DocumentScreen />
       default:
         return <HomeScreen />;
     }

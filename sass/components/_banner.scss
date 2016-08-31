@@ -1,0 +1,45 @@
+
+@import '../utilities/colors';
+
+.-document-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $green;
+  display: block;
+  width: 100%;
+  min-height: 100px;
+
+  .-banner-title {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    font-size: 46px;
+    letter-spacing: 1px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .-banner-lower {
+
+    ul {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: .4px;
+      margin: 5px auto 20px;
+    }
+
+    li {
+      text-transform: uppercase;
+      margin: 0 10px;
+    }
+
+    a {
+      color: $white;
+      opacity: .75;
+    }
+    a:hover {
+      opacity: 1;
+    }
+  }
+}

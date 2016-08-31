@@ -1,17 +1,39 @@
 
-$green: #02b875;
-$white: #ffffff;
+@import 'https://fonts.googleapis.com/css?family=Poppins:500|Lora';
+@import 'components/general';
+@import 'components/banner';
 
 body {
   background-color: $white;
+  font-family: 'Lora', serif;
+  color: rgba(0,0,0,.8);
+  font-size: 19px;
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-font-smoothing: antialiased;
 }
 
-.-document-banner {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: $green;
-  display: block;
-  width: 100%;
-  min-height: 150px;
+p {
+  letter-spacing: -.4px;
+  line-height: 1.5;
+  font-style: normal;
+  font-weight: 400;
+}
+
+ul {
+  font-family: "Helvetica Neue", sans-serif;
+  list-style-type: none;
+  -webkit-padding-start: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  display: inline-block;
 }

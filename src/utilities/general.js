@@ -25,3 +25,14 @@ export function merge(objs) {
 export function withinRange(input, lowerBound, upperBound) {
   return (input >= lowerBound && input <= upperBound);
 };
+
+export function addClass (elem, name) {
+  elem.className += ` ${name}`;
+  return elem;
+}
+
+export function removeClass (elem, name) {
+  var classList = elem.className.split(' ');
+  elem.className = classList.filter(n => n !== name).join(' ');
+  return elem;
+}
