@@ -9,8 +9,8 @@
   background-color: $green;
   display: block;
   width: 100%;
-  min-height: 100px;
-  @include transition(325ms);
+  height: 110px;
+  @include transition(275ms);
 
   .-banner-title {
     font-family: 'Poppins', sans-serif;
@@ -24,6 +24,16 @@
 
   .-banner-upper {
     text-align: center;
+    height: 75px; /* just to enforce this */
+
+    .-banner-float-right {
+      float: right;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      color: $light-green;
+      line-height: 75px;
+      background: rgba(0,0,0,.0)
+    }
   }
 
   .-banner-lower {
@@ -48,4 +58,11 @@
       opacity: 1;
     }
   }
+}
+
+.-banner-upper, .-banner-lower {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(255,255,255,.0);
 }

@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import router from '../router';
 
 export const Mode = {
   HIDDEN: 'HIDDEN',
@@ -9,12 +8,17 @@ export const Mode = {
   FULL:   'FULL'
 };
 
+export const APP_NAME = 'markup';
+
 const propTypes = {
-  viewMode: React.PropTypes.string
+  viewMode: React.PropTypes.string,
+  onExit: React.PropTypes.func.isRequired,
+  isSticky: React.PropTypes.bool
 };
 
 const defaultProps = {
-  viewMode: Mode.HIDDEN
+  viewMode: Mode.HIDDEN,
+  isSticky: true
 };
 
 class Banner extends React.Component {
@@ -24,7 +28,8 @@ class Banner extends React.Component {
       case Mode.HIDDEN:
         return {transform: 'translateY(-100%)'};
       case Mode.SHORT:
-        return {transform: 'translateY(-65%)'};
+        // This is the height of the upper banner
+        return {transform: 'translateY(-75px)'};
       case Mode.FULL:
       default:
         return {transform: 'translateY(0)'};
@@ -40,10 +45,13 @@ class Banner extends React.Component {
         <div className="-banner-upper">
           <h1
             className="-banner-title noselect"
-            onClick={() => router.navigate('/', {trigger: true})}
+            onClick={() => this.props.onExit()}
           >
-            markup
+            {APP_NAME}
           </h1>
+          <div className="-banner-float-right">
+            Unsaved
+          </div>
         </div>
 
         <div className="-banner-lower">
