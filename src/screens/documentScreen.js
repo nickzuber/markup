@@ -15,7 +15,7 @@ const SCROLL_EASING = 4;
 
 const propTypes = {
   bannerMode: React.PropTypes.string
-}
+};
 
 class DocumentScreen extends React.Component {
 
@@ -37,7 +37,7 @@ class DocumentScreen extends React.Component {
     // Slight toggle on the banner animating into the screen for the first time
     // Make sure we clear this just incase someone leaves the view within the 1ms
     this.animateIn = setTimeout(() => {
-      this.props.documentActions.showFullBanner()
+      this.props.documentActions.showFullBanner();
     }, 1);
   }
 
@@ -85,7 +85,7 @@ class DocumentScreen extends React.Component {
             setTimeout(() => {
               router.navigate('/', {trigger: true});
               // Slight toggle to make sure the CSS animation actually renders
-              setTimeout(() => {this.props.generalActions.loadPage()}, 1);
+              setTimeout(() => { this.props.generalActions.loadPage(); }, 1);
             }, 275);
           }}
         />

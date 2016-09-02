@@ -27,7 +27,7 @@ class ComponentWithPopup extends React.Component {
     this._internalPID = generatePid();
     this.state = {
       showMessage: false
-    }
+    };
   }
 
   componentDidMount () {
@@ -81,7 +81,7 @@ class ComponentWithPopup extends React.Component {
       </div>
     );
   }
-}
+};
 
 function PopUp ({message, pid}) {
   return (
@@ -90,7 +90,7 @@ function PopUp ({message, pid}) {
       {message}
     </div>
   );
-}
+};
 
 ComponentWithPopup.propTypes = propTypes;
 ComponentWithPopup.defaultProps = defaultProps;

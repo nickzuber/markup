@@ -19,7 +19,7 @@ class HomeScreen extends React.Component {
           setTimeout(() => {
             router.navigate('/edit', {trigger: true});
             // Slight toggle to make sure the CSS animation actually renders
-            setTimeout(() => {this.props.generalActions.loadPage()}, 1);
+            setTimeout(() => { this.props.generalActions.loadPage(); }, 1);
           }, 275);
         }}>
           document

@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 const propTypes = {
   bannerMode: React.PropTypes.string
-}
+};
 
 class AppBody extends React.Component {
 
@@ -14,7 +14,7 @@ class AppBody extends React.Component {
     if (!this.props.isLoaded) {
       classList += ' -fade-out';
     }
-    
+
     return (
       <div className={classList}>
         {this.props.children}
