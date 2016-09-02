@@ -6,11 +6,13 @@ import {generatePid} from '../utilities/general';
 const propTypes = {
   children: React.PropTypes.node.isRequired,
   message: React.PropTypes.node,
-  style: React.PropTypes.object
+  style: React.PropTypes.object,
+  forceHide: React.PropTypes.bool
 };
 
 const defaultProps = {
-  message: ''
+  message: '',
+  forceHide: false
 };
 
 class ComponentWithPopup extends React.Component {
@@ -30,6 +32,14 @@ class ComponentWithPopup extends React.Component {
 
   componentDidMount () {
     window && window.addEventListener('click', this.dismissPopup);
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.forceHide && !!this.state.showMessage) {
+      this.setState({
+        showMessage: false
+      });
+    }
   }
 
   componentWillUnmount () {

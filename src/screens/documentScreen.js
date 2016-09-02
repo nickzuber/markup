@@ -4,7 +4,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Banner, {Mode} from '../components/banner';
+import AppBody from '../components/appBody';
+import DocumentTextSection from '../components/documentTextSection';
 import * as DocumentActions from '../actions/documentActions';
+import * as GeneralActions from '../actions/generalActions';
 import router from '../router';
 
 // Reflects the scrolling speed needed to trigger the banner animating to full
@@ -26,6 +29,7 @@ class DocumentScreen extends React.Component {
 
   componentWillMount () {
     this.props.documentActions.hideBanner();
+    this.props.documentActions.hideAllPopups();
   }
 
   componentDidMount () {
@@ -59,6 +63,7 @@ class DocumentScreen extends React.Component {
     if (newPositionY > this.lastPositionY) {
       if (this.props.bannerMode !== Mode.SHORT) {
         this.props.documentActions.showShortBanner();
+        this.props.documentActions.hideAllPopups();
       }
     } else {
       if (this.props.bannerMode !== Mode.FULL &&
@@ -76,10 +81,18 @@ class DocumentScreen extends React.Component {
           viewMode={this.props.bannerMode}
           onExit={() => {
             this.props.documentActions.hideBanner();
-            setTimeout(() => {router.navigate('/', {trigger: true})}, 275);
+            this.props.generalActions.unloadPage();
+            setTimeout(() => {
+              router.navigate('/', {trigger: true});
+              // Slight toggle to make sure the CSS animation actually renders
+              setTimeout(() => {this.props.generalActions.loadPage()}, 1);
+            }, 275);
           }}
         />
-
+        <AppBody>
+          <DocumentTextSection editable={true} />
+          <DocumentTextSection editable={false} text={this.props.text} />
+        </AppBody>
       </div>
     );
   }
@@ -88,11 +101,13 @@ class DocumentScreen extends React.Component {
 DocumentScreen.propTypes = propTypes;
 
 const actions = (dispatch) => ({
-  documentActions: bindActionCreators(DocumentActions, dispatch)
+  documentActions: bindActionCreators(DocumentActions, dispatch),
+  generalActions: bindActionCreators(GeneralActions, dispatch)
 });
 
 const selector = (state) => ({
-  bannerMode: state.modes.banner
+  bannerMode: state.modes.banner,
+  text: state.document.text
 });
 
 export default connect(selector, actions)(DocumentScreen);

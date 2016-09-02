@@ -6,6 +6,15 @@
   cursor: pointer !important;
 }
 
+.-app-body-ref {
+  @include transition(275ms);
+}
+
+.-fade-out {
+  margin-top: -25px;
+  opacity: 0;
+}
+
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -37,15 +46,16 @@
   .popup-message {
     position: absolute;
     text-align: left;
-    width: 150px;
-    left: -60px;
+    width: 250px;
+    left: -95px;
     background: $white;
     color: $font-black;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
-    padding: 14px;
     border-radius: 4px;
     box-shadow: 0 1px 2px rgba(0,0,0,.25),0 0 1px rgba(0,0,0,.35);
+    padding-top: 14px;
+    padding-bottom: 8px;
   }
 }
 
@@ -57,6 +67,29 @@
 	animation-timing-function: cubic-bezier(.2,0,.2,1);
 	-webkit-animation-timing-function: cubic-bezier(.2,0,.2,1);
 	visibility: visible !important;
+}
+
+.-ul-message {
+  h2 {
+    font-weight: normal;
+    line-height: 24px;
+    margin: 0;
+    font-size: 18px;
+    padding: 0px 20px 7px;
+  }
+
+  li {
+    display: block;
+    line-height: initial;
+    cursor: pointer;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.6) !important;
+    padding: 7px 20px;
+    @include transition(100ms)
+  }
+  li:hover {
+    background-color: rgba(0, 0, 0, 0.025);
+  }
 }
 
 @keyframes finishAndExit {

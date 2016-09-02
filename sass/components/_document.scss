@@ -3,5 +3,20 @@
 @import '../utilities/mixins';
 
 .document-wrapper {
-  height: 4000px;
+
+}
+
+.document-text-section {
+  position: relative;
+  padding: 220px 40px 350px;
+  width: 50%;
+  min-height: 2000px;
+  box-sizing: border-box;
+  display: inline-block;
+  outline: none;
+  overflow: auto;
+}
+
+.-uneditable {
+  background-color: rgba(0, 0, 0, .025);
 }

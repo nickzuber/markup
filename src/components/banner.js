@@ -1,6 +1,9 @@
 'use strict';
 
 import React from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as DocumentActions from '../actions/documentActions';
 import ComponentWithPopup from './componentWithPopup';
 
 export const Mode = {
@@ -13,16 +16,20 @@ export const APP_NAME = 'markup';
 
 const propTypes = {
   viewMode: React.PropTypes.string,
-  onExit: React.PropTypes.func.isRequired,
-  isSticky: React.PropTypes.bool
+  onExit: React.PropTypes.func.isRequired
 };
 
 const defaultProps = {
-  viewMode: Mode.HIDDEN,
-  isSticky: true
+  viewMode: Mode.HIDDEN
 };
 
 class Banner extends React.Component {
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.showPopups === false) {
+        this.props.documentActions.resetPopups();
+    }
+  }
 
   getPosition () {
     switch (this.props.viewMode) {
@@ -35,15 +42,6 @@ class Banner extends React.Component {
       default:
         return {transform: 'translateY(0)'};
     }
-  }
-
-  getAutoSaveStyles () {
-    // @TODO reducer for autosave being enabled
-    // as a reminder, auto save will periodically store the draft in local storage
-    if (false) {
-      return {color: 'rgba(189, 241, 207, 1)'};
-    }
-    return {color: 'rgba(189, 241, 207, 0.4)'};
   }
 
   render () {
@@ -65,7 +63,32 @@ class Banner extends React.Component {
             <div className="-banner-inner-side">
               {/* Settings */}
               <ComponentWithPopup
-                message={'test'}
+                forceHide={!this.props.showPopups}
+                message={
+                  <ul className="-ul-message">
+                    <h2>Settings and Actions</h2>
+                    <li>
+                      <span className="icon-file" style={{marginRight: 10}}></span>
+                      Create new document
+                    </li>
+                    <li>
+                      <span className="icon-tag" style={{marginRight: 10}}></span>
+                      Change title
+                    </li>
+                    <li>
+                      <span className="icon-copy" style={{marginRight: 10}}></span>
+                      Copy to clipboard
+                    </li>
+                    <li>
+                      <span className="icon-refresh" style={{marginRight: 10}}></span>
+                      Undo last change
+                    </li>
+                    <li>
+                      <span className="icon-trash" style={{marginRight: 10}}></span>
+                      Delete this document
+                    </li>
+                  </ul>
+                }
               >
                 <span className="-banner-text -psuedo-link noselect">Settings</span>
               </ComponentWithPopup>
@@ -75,8 +98,13 @@ class Banner extends React.Component {
 
               {/* Notifications */}
               <ComponentWithPopup
+                forceHide={!this.props.showPopups}
                 message={
-                  <p>hello world</p>
+                  <ul className="-ul-message">
+                    <h2>There have been some updates.</h2>
+                    <li>Check out the new updates</li>
+                    <li>See our changelog</li>
+                  </ul>
                 }
               >
                 <span className="icon-bell-alt -icon-size -icon-spacing"></span>
@@ -89,10 +117,7 @@ class Banner extends React.Component {
           {/* Right */}
           <div className="-banner-float-left">
             <div className="-banner-inner-side">
-              <span
-                className="icon-lightning -icon-size"
-                style={this.getAutoSaveStyles()}
-              />
+              <span className="icon-success" />
               <span className="-banner-text -last-saved-text -psuedo-link noselect">Last saved a moment ago</span>
             </div>
           </div>
@@ -118,4 +143,12 @@ class Banner extends React.Component {
 Banner.propTypes = propTypes;
 Banner.defaultProps = defaultProps;
 
-export default Banner;
+const actions = (dispatch) => ({
+  documentActions: bindActionCreators(DocumentActions, dispatch)
+});
+
+const selector = (state) => ({
+  showPopups: state.modes.popups
+});
+
+export default connect(selector, actions)(Banner);

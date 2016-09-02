@@ -4,10 +4,12 @@ import {
   UPDATE_TEXT,
   BANNER_SHOW_FULL,
   BANNER_SHOW_SHORT,
-  BANNER_SHOW_HIDDEN
+  BANNER_SHOW_HIDDEN,
+  POPUP_HIDE_ALL,
+  POPUP_RESET
 } from './actionTypes';
 
-export function updateDocumentText (text) {
+export function updateText (text) {
   return {
     type: UPDATE_TEXT,
     text
@@ -29,5 +31,17 @@ export function showShortBanner () {
 export function hideBanner () {
   return {
     type: BANNER_SHOW_HIDDEN
+  };
+}
+
+export function resetPopups () {
+  return {
+    type: POPUP_RESET
+  };
+}
+
+export function hideAllPopups () {
+  return {
+    type: POPUP_HIDE_ALL
   };
 }
