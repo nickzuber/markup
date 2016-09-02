@@ -36,3 +36,17 @@ export function removeClass (elem, name) {
   elem.className = classList.filter(n => n !== name).join(' ');
   return elem;
 }
+
+/**
+ * Generates a random string.
+ */
+export function generatePid(){
+  var length = Math.floor(Math.random() * 10) + 10;
+  var mask = '.abcdefghijklmnopqrstuvwxyz';
+  mask += '.ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  mask += '.0123456789';
+  var result = '';
+  for(var i=length; i> 0; --i)
+    result += mask[Math.round(Math.random() * (mask.length - 1))];
+  return result;
+}

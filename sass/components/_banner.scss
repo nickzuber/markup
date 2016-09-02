@@ -2,6 +2,14 @@
 @import '../utilities/colors';
 @import '../utilities/mixins';
 
+.-icon-size {
+  font-size: 20px !important;
+  @extend .-psuedo-link;
+}
+.-icon-spacing {
+  margin-left: 20px;
+}
+
 .-document-banner {
   position: fixed;
   top: 0;
@@ -26,13 +34,28 @@
     text-align: center;
     height: 75px; /* just to enforce this */
 
-    .-banner-float-right {
-      float: right;
+    .-banner-float-left {
+      float: left;
       font-family: 'Open Sans', sans-serif;
       font-size: 14px;
       color: $light-green;
       line-height: 75px;
-      background: rgba(0,0,0,.0)
+      text-align: left;
+      width: 225px;
+    }
+
+    .-banner-float-right {
+      float: right;
+      text-align: right;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      color: $light-green;
+      line-height: 75px;
+      width: 225px;
+    }
+
+    .-banner-text {
+      padding: 5px;
     }
   }
 
@@ -60,9 +83,36 @@
   }
 }
 
+.-banner-inner-side {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .-banner-upper, .-banner-lower {
   width: 1000px;
   margin-left: auto;
   margin-right: auto;
-  background-color: rgba(255,255,255,.0);
+}
+
+@media all and (max-width: 1000px) {
+  .-banner-upper, .-banner-lower {
+    width: 100% !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media all and (max-width: 700px) {
+  .-banner-title {
+    display: none !important;
+  }
+}
+
+@media all and (max-width: 475px) {
+  .-last-saved-text {
+    display: none !important;
+  }
+  .-banner-float-left {
+    width: 30px !important;
+  }
 }

@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import ComponentWithPopup from './componentWithPopup';
 
 export const Mode = {
   HIDDEN: 'HIDDEN',
@@ -36,6 +37,15 @@ class Banner extends React.Component {
     }
   }
 
+  getAutoSaveStyles () {
+    // @TODO reducer for autosave being enabled
+    // as a reminder, auto save will periodically store the draft in local storage
+    if (false) {
+      return {color: 'rgba(189, 241, 207, 1)'};
+    }
+    return {color: 'rgba(189, 241, 207, 0.4)'};
+  }
+
   render () {
     return (
       <div
@@ -43,14 +53,48 @@ class Banner extends React.Component {
         style={this.getPosition()}
       >
         <div className="-banner-upper">
+          {/* center header */}
           <h1
             className="-banner-title noselect"
             onClick={() => this.props.onExit()}
           >
             {APP_NAME}
           </h1>
+          {/* Left */}
           <div className="-banner-float-right">
-            Unsaved
+            <div className="-banner-inner-side">
+              {/* Settings */}
+              <ComponentWithPopup
+                message={'test'}
+              >
+                <span className="-banner-text -psuedo-link noselect">Settings</span>
+              </ComponentWithPopup>
+
+              {/* Online */}
+              <span className="icon-cloud-alt -icon-size -icon-spacing"></span>
+
+              {/* Notifications */}
+              <ComponentWithPopup
+                message={
+                  <p>hello world</p>
+                }
+              >
+                <span className="icon-bell-alt -icon-size -icon-spacing"></span>
+              </ComponentWithPopup>
+
+              {/* Help */}
+              <span className="icon-help -icon-size -icon-spacing"></span>
+            </div>
+          </div>
+          {/* Right */}
+          <div className="-banner-float-left">
+            <div className="-banner-inner-side">
+              <span
+                className="icon-lightning -icon-size"
+                style={this.getAutoSaveStyles()}
+              />
+              <span className="-banner-text -last-saved-text -psuedo-link noselect">Last saved a moment ago</span>
+            </div>
           </div>
         </div>
 
