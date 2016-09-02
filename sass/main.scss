@@ -4,7 +4,7 @@
 @import 'components/banner';
 @import 'components/document';
 
-body {
+body.-core-body {
   background-color: $white;
   font-family: 'Lora', serif;
   color: rgba(0,0,0,.8);
