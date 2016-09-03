@@ -24,10 +24,12 @@ class DocumentTextSection extends React.Component {
     super(props);
 
     this.onKeyUp = this.onKeyUp.bind(this);
+    this.onMathJaxLoaded = this.onMathJaxLoaded.bind(this);
 
     this._internalPID = generatePid();
     this.DOMParser = null;
     this.lastDocumentHeight = null;
+    this.mathJaxScript = null;
     this.KramdownParser = KramdownParser.setOptions({
       highlight: function (code) {
         return Highlight.highlightAuto(code).value;
@@ -39,13 +41,21 @@ class DocumentTextSection extends React.Component {
     document && document.querySelector('.document-text-section').focus();
     this.DOMParser = new DOMParser();
     this.lastResultHeight = document.querySelector('.-uneditable').offsetHeight;
+    this.initMathJax();
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.text !== this.props.text) {
       let DOMNode = this.getProcessedDOMNode(nextProps.text);
       this.purgeChildren(document.querySelector(`[data-text-pid="${this._internalPID}"]`));
+      // Update content
       DOMNode.body && document.querySelector(`[data-text-pid="${this._internalPID}"]`).appendChild(DOMNode.body);
+      // Update MathJax
+      try {
+        window.MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+      } catch (e) {
+        console.warn('Unable to refresh MathJax upon content update.')
+      }
     }
 
     if (this.lastResultHeight !== document.querySelector('.-uneditable').offsetHeight) {
@@ -55,6 +65,34 @@ class DocumentTextSection extends React.Component {
     }
   }
 
+  initMathJax () {
+    if (!this.mathJaxScript) {
+      this.mathJaxScript = document.createElement('script');
+      this.mathJaxScript.src = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured';
+      this.mathJaxScript.onload = this.onMathJaxLoaded;
+      this.mathJaxScript.onerror = () => {
+        console.warn('There was a problem while trying to load MathJax for the first time.')
+      }
+      document.head.appendChild(this.mathJaxScript);
+    }
+  }
+
+  onMathJaxLoaded () {
+    window.MathJax.Hub.Config({
+      TeX: {
+        equationNumbers: {
+          autoNumber: "AMS"
+        }
+      },
+      tex2jax: {
+        inlineMath: [ ['$','$'] ],
+        displayMath: [ ['$$','$$'] ],
+        processEscapes: true,
+      }
+    });
+    window.MathJax.Hub.Configured();
+  }
+
   purgeChildren (DOMNode) {
     while (DOMNode.firstChild) {
       DOMNode.removeChild(DOMNode.firstChild);
@@ -62,6 +100,7 @@ class DocumentTextSection extends React.Component {
   }
 
   onKeyUp (event) {
+    // @TODO onlny call this if the text changes
     this.props.documentActions.updateText(event.target.value);
   }
 
@@ -77,6 +116,7 @@ class DocumentTextSection extends React.Component {
     // Clean HTML
     processedText = processedText.replace(/</gmi, '&lt;');
     processedText = processedText.replace(/>/gmi, '&gt;');
+    processedText = processedText.replace(/\&/gmi, '&amp;');
     processedText = processedText.replace(/\"/gmi, '&quot;');
     processedText = processedText.replace(/\'/gmi, '&#39;');
 
@@ -84,7 +124,9 @@ class DocumentTextSection extends React.Component {
     processedText = this.KramdownParser(processedText);
 
     // Parse HTML into DOM node
-    return this.DOMParser.parseFromString(processedText, 'text/html');
+    var parsedDOMNode = this.DOMParser.parseFromString(processedText, 'text/html');
+
+    return parsedDOMNode;
   }
 
   render() {
