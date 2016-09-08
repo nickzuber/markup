@@ -1,0 +1,52 @@
+
+@import '../utilities/colors';
+@import '../utilities/mixins';
+
+.-homepage-landing-block {
+  position: relative;
+  background-color: $green;
+  display: block;
+  height: 600px;
+  width: 100%;
+
+  .-banner-title {
+    padding: 50px 0 0;
+    text-align: center;
+    font-size: 4em;
+    display: block;
+    cursor: default;
+  }
+  .-banner-sub-title {
+    font-family: 'Open Sans', sans-serif;
+    color: $white;
+    opacity: .75;
+    letter-spacing: 1px;
+    margin: -10px auto 0;
+    width: 450px;
+    padding: 0;
+    font-weight: 100;
+    text-align: center;
+    font-size: 18px;
+    line-height: 22px;
+    display: block;
+    cursor: default;
+  }
+
+  input[type=button] {
+    margin: 30px auto;
+  }
+}
+
+.-landing-example-container {
+  position: absolute;
+  bottom: 0;
+  width: 700px;
+  left: 50%;
+  margin-left: -350px;
+
+  .document-text-section {
+    padding: 60px 40px 20px;
+    min-height: 300px;
+    max-height: 300px;
+  }
+}

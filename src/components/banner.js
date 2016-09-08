@@ -12,8 +12,6 @@ export const Mode = {
   FULL:   'FULL'
 };
 
-export const APP_NAME = 'markup';
-
 const propTypes = {
   viewMode: React.PropTypes.string,
   onExit: React.PropTypes.func.isRequired
@@ -56,7 +54,7 @@ class Banner extends React.Component {
             className="-banner-title noselect"
             onClick={() => this.props.onExit()}
           >
-            {APP_NAME}
+            markup
           </h1>
           {/* Left */}
           <div className="-banner-float-right">

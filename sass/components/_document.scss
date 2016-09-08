@@ -13,6 +13,7 @@ textarea {
 
 .document-text-section {
   position: relative;
+  background-color: $white;
   padding: 220px 40px 350px;
   width: 50%;
   min-height: 100vh;
@@ -22,8 +23,61 @@ textarea {
   display: inline-block;
   outline: none;
 
-  h1, h2, h3, h4, h5, h6, p {
-    margin-top: 0;
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  p {
+    margin: 0;
+    margin-bottom: 16px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.58;
+    letter-spacing: -0.003em;
+  }
+
+  hr {
+    margin: 50px 0;
+    border: 1px solid transparent;
+  }
+  hr::after {
+    content: '...';
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    position: relative;
+    top: -20px;
+    font-size: 22px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    letter-spacing: 15px;
+  }
+
+  h1 {
+    font-size: 46px;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+  }
+
+  h2 {
+    font-size: 40px;
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+  }
+  h3 {
+    font-size: 32px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  h4 {
+    font-size: 24px;
+    line-height: 1.22;
+    letter-spacing: -0.018em;
   }
 
   a {
@@ -31,23 +85,52 @@ textarea {
     text-decoration: underline;
   }
 
+  ul {
+
+  }
+
+  blockquote {
+    border-left: .25em solid #dddddd;
+    padding-left: 20px;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+
+    * {
+      font-style: italic;
+      color: #777;
+    }
+  }
+
   code {
-    font-family: monospace;
-    font-size: 16px;
+    font-family: 'Inconsolata',monospace;
+    padding: 1px 5px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+  }
+
+  pre>code {
     border: 0;
     padding-right: 0;
     padding-left: 0;
-    color: #d0d4d7;
     border-radius: 4px;
     width: 100%;
     box-sizing: border-box;
     display: block;
-    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.05);
     padding: 20px !important;
     margin: 10px 0 30px !important;
   }
 }
 
 .-uneditable {
-  background-color: rgba(0, 0, 0, .025);
+  h1:first-of-type,
+  h2:first-of-type,
+  h3:first-of-type,
+  h4:first-of-type,
+  h5:first-of-type,
+  h6:first-of-type {
+    margin-top: 0 !important;
+  }
 }

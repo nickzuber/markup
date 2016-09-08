@@ -10,6 +10,16 @@
   margin-left: 20px;
 }
 
+.-banner-title {
+  font-family: 'Poppins', sans-serif;
+  color: $white;
+  font-size: 46px;
+  letter-spacing: 1px;
+  margin: 0 auto;
+  cursor: pointer;
+  display: inline-block;
+}
+
 .-document-banner {
   position: fixed;
   top: 0;
@@ -21,14 +31,11 @@
   z-index: 1;
   @include transition(275ms);
 
-  .-banner-title {
-    font-family: 'Poppins', sans-serif;
-    color: #fff;
-    font-size: 46px;
-    letter-spacing: 1px;
-    margin: 0 auto;
-    cursor: pointer;
-    display: inline-block;
+  ul {
+    font-family: 'Helvetica Neue', sans-serif;
+    list-style-type: none;
+    -webkit-padding-start: 0;
+    margin: 0;
   }
 
   .-banner-upper {

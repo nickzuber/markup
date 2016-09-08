@@ -15,6 +15,31 @@
   opacity: 0;
 }
 
+.-custom-button-style {
+  display: block;
+  margin: 0 auto;
+  border: 0;
+  line-height: 100%;
+  background-color: $blue;
+  border-radius: 2px;
+  color: $white;
+  font-weight: 500;
+  font-style: normal;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  padding: 12px 24px;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  @include transition(100ms)
+}
+.-custom-button-style:hover {
+
+}
+
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -40,7 +65,7 @@
     display: block;
     width: 14px;
     height: 14px;
-    background: #fff;
+    background: $white;
   }
 
   .popup-message {

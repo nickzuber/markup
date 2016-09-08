@@ -90,8 +90,8 @@ class DocumentScreen extends React.Component {
           }}
         />
         <AppBody>
-          <DocumentTextSection style={{float:'left'}} editable={true} />
-          <DocumentTextSection style={{float:'right'}} editable={false} text={this.props.text} />
+          <DocumentTextSection uniqueId={'document'} style={{float:'left'}} editable={true} />
+          <DocumentTextSection uniqueId={'document'} style={{float:'right'}} editable={false} text={this.props.text} />
         </AppBody>
       </div>
     );
