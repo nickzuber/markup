@@ -28,7 +28,6 @@ class DocumentScreen extends React.Component {
   }
 
   componentWillMount () {
-    this.props.documentActions.hideBanner();
     this.props.documentActions.hideAllPopups();
   }
 

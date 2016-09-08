@@ -58,8 +58,9 @@ class HomeScreen extends React.Component {
         </div>
 
         {/* FEATURES BLOCK */}
-        <div>
-
+        <div className="-homepage-features-block">
+          <img src="img/mathjax.png" />
+          <img src="img/markdown.png" />
         </div>
       </AppBody>
     );
