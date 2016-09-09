@@ -84,7 +84,7 @@ class Banner extends React.Component {
                   </ul>
                 }
               >
-                <span className="icon-bell-alt -icon-size -icon-spacing"></span>
+                <span className="icon-bell-alt -notifications -icon-size -icon-spacing"></span>
               </ComponentWithPopup>
 
               {/* Help */}
