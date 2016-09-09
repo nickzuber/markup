@@ -30,6 +30,10 @@
     line-height: 22px;
     display: block;
     cursor: default;
+
+    span {
+      vertical-align: initial;
+    }
   }
 
   input[type=button] {
@@ -63,5 +67,11 @@
     opacity: .1;
     margin: 30px 20px;
     height: 40px;
+    cursor: pointer;
+    @include transition(200ms);
+  }
+
+  img:hover {
+    opacity: .2;
   }
 }

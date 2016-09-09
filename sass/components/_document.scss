@@ -119,6 +119,7 @@ textarea {
     box-sizing: border-box;
     display: block;
     background-color: rgba(0, 0, 0, 0.05);
+    overflow: auto;
     padding: 20px !important;
     margin: 10px 0 30px !important;
   }

@@ -10,8 +10,21 @@ import Highlight from 'highlight.js';
 
 const THROTTLE = 500;
 
+// @TODO move this to constants file
+export const Formats = {
+  BOLD: 'BOLD',
+  ITALIC: 'ITALIC',
+  STRIKETHRU: 'STRIKETHRU',
+  QUOTE: 'QUOTE',
+  UL: 'UL',
+  OL: 'OL',
+  CODE: 'CODE',
+  MATH: 'MATH'
+};
+
 /**
- * The `uniqueId` is used to pair together uneditable and editable document sections
+ * The `uniqueId` is used to pair together uneditable and editable document
+ * sections if there is a need to do so.
  */
 const propTypes = {
   text: React.PropTypes.string,
@@ -63,6 +76,7 @@ class DocumentTextSection extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
+    // Update uneditable text
     if (nextProps.text !== this.props.text) {
       let DOMNode = this.getProcessedDOMNode(nextProps.text);
       this.purgeChildren(document.querySelector(`[data-text-pid="${this._internalPID}"]`));
@@ -76,11 +90,19 @@ class DocumentTextSection extends React.Component {
       }
     }
 
+    // Adjust height of textarea
     if (this.lastResultHeight !== document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight &&
-        document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`)) {
+      document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`)) {
       var newHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
       document.querySelector(`textarea.document-text-section[data-document-pid="${this.props.uniqueId}"]`).style.height = `${newHeight}px`;
       this.lastResultHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
+    }
+
+    // Check for formatting button being pressed
+    // If the new formatting is coming in null, ignore it (we're resetting)
+    if (!!nextProps.formatting && this.props.formatting !== nextProps.formatting) {
+      this.replaceSelectedText(nextProps.formatting);
+      this.props.documentActions.resetFormatting();
     }
   }
 
@@ -117,6 +139,73 @@ class DocumentTextSection extends React.Component {
     }
   }
 
+  replaceSelectedText (format) {
+    var textNodeDOM = document.querySelector(`textarea.document-text-section[data-document-pid="${this.props.uniqueId}"]`);
+    var selectedText = null;
+
+    if (textNodeDOM && typeof textNodeDOM.selectionStart === 'number') {
+      let startPos = textNodeDOM.selectionStart;
+      let endPos = textNodeDOM.selectionEnd;
+      selectedText = textNodeDOM.value.substring(startPos, endPos);
+
+      let blob = {
+        selectedText,
+        node: textNodeDOM,
+        start: startPos,
+        end: endPos
+      };
+
+      this.formatParser(format, blob);
+      this.props.documentActions.updateText(textNodeDOM.value);
+    }
+  }
+
+  formatParser (format, blob) {
+    var {
+      start,
+      end,
+      node,
+      selectedText
+    } = blob;
+
+    switch (format) {
+      case Formats.BOLD:
+        node.value = this.replaceString(node.value, `**${selectedText}**`, start, end);
+        node.setSelectionRange(start + 2, end + 2);
+        break;
+      case Formats.ITALIC:
+        node.value = this.replaceString(node.value, `_${selectedText}_`, start, end);
+        node.setSelectionRange(start + 1, end + 1);
+        break;
+      case Formats.STRIKETHRU:
+        node.value = this.replaceString(node.value, `~~${selectedText}~~`, start, end);
+        node.setSelectionRange(start + 2, end + 2);
+        break;
+      case Formats.QUOTE:
+        node.value = this.replaceString(node.value, `\n> ${selectedText}`, start, end);
+        node.setSelectionRange(start + 3, start + 3);
+        break;
+      case Formats.OL:
+        node.value = this.replaceString(node.value, `\n - ${selectedText}`, start, end);
+        node.setSelectionRange(start + 4, start + 4);
+        break;
+      case Formats.UL:
+        node.value = this.replaceString(node.value, `\n1. ${selectedText}`, start, end);
+        node.setSelectionRange(start + 4, start + 4);
+        break;
+      case Formats.CODE:
+        node.value = this.replaceString(node.value, `\`${selectedText}\``, start, end);
+        node.setSelectionRange(start + 1, start + 1);
+        break;
+      case Formats.MATH:
+        node.value = this.replaceString(node.value, `$$${selectedText}$$`, start, end);
+        node.setSelectionRange(start + 2, start + 2);
+        break;
+      default:
+        console.warn(`${format} is currently unsupported.`);
+    }
+  }
+
   onKeyUp (event) {
     var newText = event.target.value;
     clearTimeout(this.textThrottle);
@@ -141,6 +230,10 @@ class DocumentTextSection extends React.Component {
     var parsedDOMNode = this.DOMParser.parseFromString(processedText, 'text/html');
 
     return parsedDOMNode;
+  }
+
+  replaceString (string, newText, start, end) {
+    return string.slice(0, start) + newText + string.slice(end);
   }
 
   render() {

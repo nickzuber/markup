@@ -6,7 +6,9 @@ import {
   BANNER_SHOW_SHORT,
   BANNER_SHOW_HIDDEN,
   POPUP_HIDE_ALL,
-  POPUP_RESET
+  POPUP_RESET,
+  REQUEST_FORMATTING,
+  RESET_FORMATTING
 } from './actionTypes';
 
 export function updateText (text) {
@@ -43,5 +45,18 @@ export function resetPopups () {
 export function hideAllPopups () {
   return {
     type: POPUP_HIDE_ALL
+  };
+}
+
+export function requestFormatting (format) {
+  return {
+    type: REQUEST_FORMATTING,
+    format
+  };
+}
+
+export function resetFormatting () {
+  return {
+    type: RESET_FORMATTING
   };
 }

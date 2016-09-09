@@ -4,6 +4,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as DocumentActions from '../actions/documentActions';
+import {Formats} from './documentTextSection';
 import ComponentWithPopup from './componentWithPopup';
 
 export const Mode = {
@@ -27,6 +28,13 @@ class Banner extends React.Component {
     if (nextProps.showPopups === false) {
         this.props.documentActions.resetPopups();
     }
+  }
+
+  // Make sure we don't unselect anything
+  applyFormattingSafely (e, format) {
+    e.preventDefault();
+    this.props.documentActions.requestFormatting(format);
+    return false;
   }
 
   getPosition () {
@@ -59,37 +67,8 @@ class Banner extends React.Component {
           {/* Left */}
           <div className="-banner-float-right">
             <div className="-banner-inner-side">
-              {/* Settings */}
-              <ComponentWithPopup
-                forceHide={!this.props.showPopups}
-                message={
-                  <ul className="-ul-message">
-                    <h2>Settings and Actions</h2>
-                    <li>
-                      <span className="icon-file" style={{marginRight: 10}}></span>
-                      Create new document
-                    </li>
-                    <li>
-                      <span className="icon-tag" style={{marginRight: 10}}></span>
-                      Change title
-                    </li>
-                    <li>
-                      <span className="icon-copy" style={{marginRight: 10}}></span>
-                      Copy to clipboard
-                    </li>
-                    <li>
-                      <span className="icon-refresh" style={{marginRight: 10}}></span>
-                      Undo last change
-                    </li>
-                    <li>
-                      <span className="icon-trash" style={{marginRight: 10}}></span>
-                      Delete this document
-                    </li>
-                  </ul>
-                }
-              >
-                <span className="-banner-text -psuedo-link noselect">Settings</span>
-              </ComponentWithPopup>
+              {/* Save */}
+              <span className="-banner-text -psuedo-link noselect">Save document</span>
 
               {/* Online */}
               <span className="icon-cloud-alt -icon-size -icon-spacing"></span>
@@ -116,21 +95,21 @@ class Banner extends React.Component {
           <div className="-banner-float-left">
             <div className="-banner-inner-side">
               <span className="icon-success" />
-              <span className="-banner-text -last-saved-text -psuedo-link noselect">Last saved a moment ago</span>
+              <span className="-banner-text -last-saved-text noselect">Last saved a moment ago</span>
             </div>
           </div>
         </div>
 
         <div className="-banner-lower">
           <ul>
-            <li>{/* bold */}</li>
-            <li>{/* italic */}</li>
-            <li>{/* quote */}</li>
-            <li>{/* bullet list */}</li>
-            <li>{/* number list */}</li>
-            <li>{/* code */}</li>
-            <li>{/* code */}</li>
-            <li>{/* math */}</li>
+            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.BOLD)}>B</li>
+            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.ITALIC)}>I</li>
+            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.STRIKETHRU)}>S</li>
+            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.QUOTE)}>Q</li>
+            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.UL)}>UL</li>
+            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.OL)}>OL</li>
+            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.CODE)}>C</li>
+            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.MATH)}>M</li>
           </ul>
         </div>
       </div>

@@ -34,10 +34,10 @@
   font-size: 14px;
   cursor: pointer;
   outline: none;
-  @include transition(100ms)
+  @include transition(200ms)
 }
 .-custom-button-style:hover {
-
+  background-color: #4db0f4;
 }
 
 .noselect {
@@ -141,4 +141,41 @@
     width: 100%;
     top: -2px;
   }
+}
+
+.typed-lite-cursor{
+	color: $white;
+  vertical-align: text-top !important;
+  font-weight: 100;
+  opacity: 1;
+  -webkit-animation: blink 0.7s infinite;
+  -moz-animation: blink 0.7s infinite;
+  -ms-animation: blink 0.7s infinite;
+  -o-animation: blink 0.7s infinite;
+  animation: blink 0.7s infinite;
+}
+@keyframes blink{
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}
+@-moz-keyframes blink{
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}
+@-ms-keyframes blink{
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}
+@-o-keyframes blink{
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
 }

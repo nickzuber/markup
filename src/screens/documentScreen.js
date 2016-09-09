@@ -37,7 +37,7 @@ class DocumentScreen extends React.Component {
     // Make sure we clear this just incase someone leaves the view within the 1ms
     this.animateIn = setTimeout(() => {
       this.props.documentActions.showFullBanner();
-    }, 1);
+    }, 100);
   }
 
   componentWillUnmount () {
@@ -89,8 +89,18 @@ class DocumentScreen extends React.Component {
           }}
         />
         <AppBody>
-          <DocumentTextSection uniqueId={'document'} style={{float:'left'}} editable={true} />
-          <DocumentTextSection uniqueId={'document'} style={{float:'right'}} editable={false} text={this.props.text} />
+          <DocumentTextSection
+            formatting={this.props.format}
+            uniqueId={'document'}
+            style={{float:'left'}}
+            editable={true}
+          />
+          <DocumentTextSection
+            uniqueId={'document'}
+            style={{float:'right'}}
+            editable={false}
+            text={this.props.text}
+          />
         </AppBody>
       </div>
     );
@@ -106,7 +116,8 @@ const actions = (dispatch) => ({
 
 const selector = (state) => ({
   bannerMode: state.modes.banner,
-  text: state.document.text
+  text: state.document.text,
+  format: state.document.format
 });
 
 export default connect(selector, actions)(DocumentScreen);

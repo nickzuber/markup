@@ -17,6 +17,10 @@ body.-core-body {
   -webkit-font-smoothing: antialiased;
 }
 
+#MathJax_Message {
+  display: none !important;
+}
+
 span {
   vertical-align: middle;
 }

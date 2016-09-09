@@ -9,14 +9,45 @@ import DocumentTextSection from '../components/documentTextSection';
 import Button from '../components/button';
 import * as DocumentActions from '../actions/documentActions';
 import * as GeneralActions from '../actions/generalActions';
+import Typed from 'typed-lite';
 import router from '../router';
 
-const defaultText = '### MarkUp\n\n> Markdown editing platform that supports MathJax and Kramdown markups.\n\nSupports **math** $$\Omega (n^2)=x$$ and _other_ markdown ~~stuff~~ features.';
+const MathJaxLink = 'http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference';
+const KramdownLink = 'http://kramdown.gettalong.org/syntax.html';
+const defaultText = '### MarkUp\n\n> Markdown editing platform that supports MathJax and Kramdown markups.\n\nSupports **math** $$\\Omega (n^2)=x$$ and _other_ markdown ~~stuff~~ features.';
 
 class HomeScreen extends React.Component {
 
+  constructor (props) {
+    super(props);
+
+    this.typedText = null;
+  }
+
   componentWillMount () {
     this.props.documentActions.updateText(defaultText);
+  }
+
+  componentDidMount () {
+    var nodeDOM = document.querySelector('.-dynamic-typing-area');
+
+    this.typedText = new Typed(nodeDOM, {
+    	words: ['meaningful', 'beautiful', 'powerful', 'interesting', 'unique', 'wonderful', 'radical', 'sincere', 'organic'],
+    	startDelay: 3000,
+    	timing: 65,
+    	backTiming: 40,
+    	pause: 2500,
+    	typoProbability: .05,
+    	maxTypos: 1,
+    	loop: true
+    });
+
+    this.typedText.start();
+  }
+
+  openInNewTab (url) {
+    var win = window.open(url, '_blank');
+    win.focus();
   }
 
   routeToEdit () {
@@ -35,7 +66,10 @@ class HomeScreen extends React.Component {
         <div className="-homepage-landing-block">
           {/* Header */}
           <h1 className="-banner-title noselect">markup</h1>
-          <h2 className="-banner-sub-title noselect">Write beautiful and meaningful stuff.</h2>
+          <h2 className="-banner-sub-title noselect">
+            Write something&nbsp;
+            <span className="-dynamic-typing-area">meaningful</span>
+          </h2>
           {/* Interactive example */}
           <div className="-landing-example-container">
             <Button
@@ -59,8 +93,8 @@ class HomeScreen extends React.Component {
 
         {/* FEATURES BLOCK */}
         <div className="-homepage-features-block">
-          <img src="img/mathjax.png" />
-          <img src="img/markdown.png" />
+          <img onClick={() => this.openInNewTab(MathJaxLink)} src="img/mathjax.png" />
+          <img onClick={() => this.openInNewTab(KramdownLink)} src="img/markdown.png" />
         </div>
       </AppBody>
     );
