@@ -39,14 +39,14 @@ class Banner extends React.Component {
 
   getPosition () {
     switch (this.props.viewMode) {
-      case Mode.HIDDEN:
-        return {transform: 'translateY(-100%)'};
       case Mode.SHORT:
         // This is the height of the upper banner
         return {transform: 'translateY(-75px)'};
       case Mode.FULL:
-      default:
         return {transform: 'translateY(0)'};
+      case Mode.HIDDEN:
+      default:
+        return {transform: 'translateY(-100%)'};
     }
   }
 

@@ -1,3 +1,6 @@
+
+[![MarkUp](./.github/markup.gif)
+
 # MarkUp
 
 [![Build Status](https://travis-ci.org/nickzuber/mark-up.svg?branch=master)](https://travis-ci.org/nickzuber/mark-up)

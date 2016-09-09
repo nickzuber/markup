@@ -33,11 +33,7 @@ class DocumentScreen extends React.Component {
 
   componentDidMount () {
     window && window.addEventListener('scroll', this.onScroll);
-    // Slight toggle on the banner animating into the screen for the first time
-    // Make sure we clear this just incase someone leaves the view within the 1ms
-    this.animateIn = setTimeout(() => {
-      this.props.documentActions.showFullBanner();
-    }, 100);
+    this.props.documentActions.showFullBanner();
   }
 
   componentWillUnmount () {
