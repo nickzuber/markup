@@ -104,6 +104,7 @@ class Banner extends React.Component {
           <ul>
             <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.BOLD)}>B</li>
             <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.ITALIC)}>I</li>
+            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.LINEBREAK)}>BR</li>
             <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.STRIKETHRU)}>S</li>
             <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.QUOTE)}>Q</li>
             <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.UL)}>UL</li>

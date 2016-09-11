@@ -14,6 +14,7 @@ const THROTTLE = 500;
 export const Formats = {
   BOLD: 'BOLD',
   ITALIC: 'ITALIC',
+  LINEBREAK: 'LINEBREAK',
   STRIKETHRU: 'STRIKETHRU',
   QUOTE: 'QUOTE',
   UL: 'UL',
@@ -176,6 +177,10 @@ class DocumentTextSection extends React.Component {
       case Formats.ITALIC:
         node.value = this.replaceString(node.value, `_${selectedText}_`, start, end);
         node.setSelectionRange(start + 1, end + 1);
+        break;
+      case Formats.LINEBREAK:
+        node.value = this.replaceString(node.value, `\n\n---\n\n${selectedText}`, start, end);
+        node.setSelectionRange(start + 7, end + 7);
         break;
       case Formats.STRIKETHRU:
         node.value = this.replaceString(node.value, `~~${selectedText}~~`, start, end);
