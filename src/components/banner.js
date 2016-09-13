@@ -101,16 +101,16 @@ class Banner extends React.Component {
         </div>
 
         <div className="-banner-lower">
-          <ul>
-            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.BOLD)}>B</li>
-            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.ITALIC)}>I</li>
-            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.LINEBREAK)}>BR</li>
-            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.STRIKETHRU)}>S</li>
-            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.QUOTE)}>Q</li>
-            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.UL)}>UL</li>
-            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.OL)}>OL</li>
-            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.CODE)}>C</li>
-            <li onMouseDown={(event) => this.applyFormattingSafely(event, Formats.MATH)}>M</li>
+          <ul className="-banner-icons">
+            <li className="-bold" onMouseUp={(event) => this.applyFormattingSafely(event, Formats.BOLD)}>&nbsp;</li>
+            <li className="-italic" onMouseUp={(event) => this.applyFormattingSafely(event, Formats.ITALIC)}>&nbsp;</li>
+            <li className="-linebreak" onMouseUp={(event) => this.applyFormattingSafely(event, Formats.LINEBREAK)}>&nbsp;</li>
+            <li className="-strikethru" onMouseUp={(event) => this.applyFormattingSafely(event, Formats.STRIKETHRU)}>&nbsp;</li>
+            <li className="-quote" onMouseUp={(event) => this.applyFormattingSafely(event, Formats.QUOTE)}>&nbsp;</li>
+            <li className="-ul" onMouseUp={(event) => this.applyFormattingSafely(event, Formats.UL)}>&nbsp;</li>
+            <li className="-ol" onMouseUp={(event) => this.applyFormattingSafely(event, Formats.OL)}>&nbsp;</li>
+            <li className="-code" onMouseUp={(event) => this.applyFormattingSafely(event, Formats.CODE)}>&nbsp;</li>
+            <li className="-math" onMouseUp={(event) => this.applyFormattingSafely(event, Formats.MATH)}>&nbsp;</li>
           </ul>
         </div>
       </div>

@@ -187,14 +187,14 @@ class DocumentTextSection extends React.Component {
         node.setSelectionRange(start + 2, end + 2);
         break;
       case Formats.QUOTE:
-        node.value = this.replaceString(node.value, `\n> ${selectedText}`, start, end);
-        node.setSelectionRange(start + 3, start + 3);
-        break;
-      case Formats.OL:
-        node.value = this.replaceString(node.value, `\n - ${selectedText}`, start, end);
+        node.value = this.replaceString(node.value, `\n\n> ${selectedText}`, start, end);
         node.setSelectionRange(start + 4, start + 4);
         break;
       case Formats.UL:
+        node.value = this.replaceString(node.value, `\n - ${selectedText}`, start, end);
+        node.setSelectionRange(start + 4, start + 4);
+        break;
+      case Formats.OL:
         node.value = this.replaceString(node.value, `\n1. ${selectedText}`, start, end);
         node.setSelectionRange(start + 4, start + 4);
         break;

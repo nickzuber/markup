@@ -86,13 +86,15 @@
       font-size: 13px;
       font-weight: 400;
       letter-spacing: .4px;
-      margin: 10px auto;
+      margin: 0 auto;
     }
 
     li {
       @extend .noselect;
       @extend .-psuedo-link;
-      margin: 0 10px;
+      margin: 0;
+      width: 35px;
+      line-height: 35px;
       display: inline-block;
       color: $white;
       font-weight: 700;
@@ -118,6 +120,66 @@
   width: 1000px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.-banner-icons {
+
+  li {
+    border-radius: 5px;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    background-size: 50%;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    background-size: 50%;
+    @include transition(150ms);
+  }
+  li:hover {
+    background-color: rgba(0,0,0,.1);
+  }
+  li:active {
+    background-color: rgba(0,0,0,.2);
+  }
+
+  .-bold {
+    background-image: url("../img/icons/bold.png");
+    background-size: 35%;
+  }
+  .-italic {
+    background-image: url("../img/icons/italic.png");
+    background-size: 35%;
+  }
+  .-linebreak {
+    background-image: url("../img/icons/linebreak.png");
+    background-size: 75%;
+  }
+  .-strikethru {
+    background-image: url("../img/icons/strikethru.png");
+    background-size: 55%;
+  }
+  .-quote {
+    background-image: url("../img/icons/quote.png");
+    background-size: 65%;
+    background-position-y: 40%;
+  }
+  .-ul {
+    background-image: url("../img/icons/ul.png");
+  }
+  .-ol {
+    background-image: url("../img/icons/ol.png");
+  }
+  .-code {
+    background-image: url("../img/icons/code.png");
+    background-size: 70%;
+  }
+  .-math {
+    background-image: url("../img/icons/lambda.png");
+  }
+
 }
 
 @media all and (max-width: 1000px) {
