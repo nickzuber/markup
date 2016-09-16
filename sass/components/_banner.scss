@@ -92,9 +92,9 @@
     li {
       @extend .noselect;
       @extend .-psuedo-link;
-      margin: 0;
-      width: 35px;
-      line-height: 35px;
+      margin: 2.5px;
+      width: 30px;
+      line-height: 30px;
       display: inline-block;
       color: $white;
       font-weight: 700;
@@ -125,7 +125,7 @@
 .-banner-icons {
 
   li {
-    border-radius: 5px;
+    border-radius: 100%;
     background-position-x: 50%;
     background-position-y: 50%;
     background-size: 50%;
