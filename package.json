@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build:app": "./node_modules/.bin/gulp sass && webpack --config webpack.config.js && node server.js",
-    "build:css": "gulp sass && gulp watch",
+    "build:sass": "gulp sass && gulp watch",
     "dev": "webpack --config webpack.dev.config.js && node server.dev.js",
     "sass": "./node_modules/.bin/gulp sass",
     "watch": "./node_modules/.bin/gulp watch",

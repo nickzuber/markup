@@ -7,6 +7,7 @@ import * as DocumentActions from '../actions/documentActions';
 import {generatePid} from '../utilities/general';
 import KramdownParser from 'kramed';
 import Highlight from 'highlight.js';
+import Katex from 'katex';
 
 const THROTTLE = 500;
 
@@ -79,15 +80,27 @@ class DocumentTextSection extends React.Component {
   componentWillReceiveProps (nextProps) {
     // Update uneditable text
     if (nextProps.text !== this.props.text) {
-      let DOMNode = this.getProcessedDOMNode(nextProps.text);
+
+      // Parse KaTeX
+      try {
+        var KatexParsedResult = nextProps.text.replace(/(\$\$|\$)(?:(?=(\\?))\2.)*?\1/g, function (capturedGroup) {
+          var cleanedString = capturedGroup.replace(/([$|$$]*)/g, '');
+          return Katex.renderToString(cleanedString);
+        });
+        console.log(`Katex: ${KatexParsedResult}`);
+      } catch (err) {
+        console.warn(`Error: Failed to parse mathematical expressions: ${err}`);
+      }
+
+      let DOMNode = this.getProcessedDOMNode(KatexParsedResult);
       this.purgeChildren(document.querySelector(`[data-text-pid="${this._internalPID}"]`));
       // Update content
       DOMNode.body && document.querySelector(`[data-text-pid="${this._internalPID}"]`).appendChild(DOMNode.body);
       // Update MathJax
       try {
         window.MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
-      } catch (e) {
-        console.warn('Unable to refresh MathJax upon content update.');
+      } catch (err) {
+        console.warn('Warning: Unable to refresh MathJax upon content update.');
       }
     }
 
