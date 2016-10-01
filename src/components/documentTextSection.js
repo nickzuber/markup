@@ -9,7 +9,7 @@ import KramdownParser from 'kramed';
 import Highlight from 'highlight.js';
 import Katex from 'katex';
 
-const THROTTLE = 500;
+const THROTTLE = 0;
 
 // @TODO move this to constants file
 export const Formats = {
@@ -81,17 +81,13 @@ class DocumentTextSection extends React.Component {
     // Update uneditable text
     if (nextProps.text !== this.props.text) {
 
-      // Parse KaTeX
-      try {
-        var KatexParsedResult = nextProps.text.replace(/(\$\$|\$)(?:(?=(\\?))\2.)*?\1/g, function (capturedGroup) {
-          var cleanedString = capturedGroup.replace(/([$|$$]*)/g, '');
-          return Katex.renderToString(cleanedString);
-        });
-        console.log(`Katex: ${KatexParsedResult}`);
-      } catch (err) {
-        console.warn(`Error: Failed to parse mathematical expressions: ${err}`);
-      }
+      let processedText = this.transpileRawTextData(nextProps.text);
 
+      document.querySelector(`[data-text-pid="${this._internalPID}"]`).innerHTML = processedText;
+
+
+
+/*
       let DOMNode = this.getProcessedDOMNode(KatexParsedResult);
       this.purgeChildren(document.querySelector(`[data-text-pid="${this._internalPID}"]`));
       // Update content
@@ -102,12 +98,13 @@ class DocumentTextSection extends React.Component {
       } catch (err) {
         console.warn('Warning: Unable to refresh MathJax upon content update.');
       }
+*/
     }
 
     // Adjust height of textarea
     if (this.lastResultHeight !== document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight &&
       document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`)) {
-      var newHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
+      let newHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
       document.querySelector(`textarea.document-text-section[data-document-pid="${this.props.uniqueId}"]`).style.height = `${newHeight}px`;
       this.lastResultHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
     }
@@ -252,6 +249,27 @@ class DocumentTextSection extends React.Component {
 
   replaceString (string, newText, start, end) {
     return string.slice(0, start) + newText + string.slice(end);
+  }
+
+  transpileRawTextData (rawText) {
+    if (!rawText) {
+      return rawText;
+    }
+
+    // Parse markdown
+    var markdownFormattedText = this.KramdownParser(rawText);
+
+    // Parse KaTeX
+    try {
+      var KatexParsedResult = markdownFormattedText.replace(/(\$\$|\$)(?:(?=(\\?))\2.)*?\1/g, function (capturedGroup) {
+        var cleanedString = capturedGroup.replace(/([$|$$]*)/g, '');
+        return Katex.renderToString(cleanedString);
+      });
+      return KatexParsedResult;
+    } catch (err) {
+      console.warn(err);
+    }
+    return markdownFormattedText;
   }
 
   render() {

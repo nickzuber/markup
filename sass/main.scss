@@ -25,6 +25,10 @@ span {
   vertical-align: middle;
 }
 
+.katex span {
+  vertical-align: inherit;
+}
+
 p {
   letter-spacing: -.4px;
   line-height: 1.5;
