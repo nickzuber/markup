@@ -251,17 +251,46 @@ class DocumentTextSection extends React.Component {
     return string.slice(0, start) + newText + string.slice(end);
   }
 
+  /**
+   * It's important to note why we parse the text this way -- removing the expressions,
+   * parsing the markdown, filling the expressions back in, and finally parsing the
+   * expressions. This is because if we have something within an expression that
+   * could be interpreted as markdown, the markdown parser will attempt to parse it:
+   *
+   * e.g.
+   *
+   *   Here is some _text_ and $n_i$ and some more _words_
+   *
+   * The `_` from `n_i` will connect with the first `_` in `_words_`, and the
+   * markdown parser will break the expression attemping to parse this as markdown.
+   * So we temporarily remove all of the expressions, parse the markdown, then put
+   * them back into place to avoid this from happening.
+   */
   transpileRawTextData (rawText) {
     if (!rawText) {
       return rawText;
     }
 
+    // Store all of the expressions we extract from the raw text
+    var purgedExpressions = [];
+
+    // Extract expressions
+    var expressionlessRawText = rawText.replace(/(\$)(?:(?=(\\?))\2.)*?\1/g, function (capturedGroup) {
+      purgedExpressions.push(capturedGroup.replace(/([$|$$]*)/g, ''));
+      return '$$';
+    });
+
     // Parse markdown
-    var markdownFormattedText = this.KramdownParser(rawText);
+    var markdownFormattedText = this.KramdownParser(expressionlessRawText);
+
+    // Fill those expressions back in
+    markdownFormattedText = markdownFormattedText.replace(/(\$)(?:(?=(\\?))\2.)*?\1/g, function (capturedGroup) {
+      return `$${purgedExpressions.shift()}$`;
+    });
 
     // Parse KaTeX
     try {
-      var KatexParsedResult = markdownFormattedText.replace(/(\$\$|\$)(?:(?=(\\?))\2.)*?\1/g, function (capturedGroup) {
+      var KatexParsedResult = markdownFormattedText.replace(/(\$)(?:(?=(\\?))\2.)*?\1/g, function (capturedGroup) {
         var cleanedString = capturedGroup.replace(/([$|$$]*)/g, '');
         return Katex.renderToString(cleanedString);
       });
