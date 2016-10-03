@@ -85,9 +85,7 @@ class DocumentTextSection extends React.Component {
 
       document.querySelector(`[data-text-pid="${this._internalPID}"]`).innerHTML = processedText;
 
-
-
-/*
+      /*
       let DOMNode = this.getProcessedDOMNode(KatexParsedResult);
       this.purgeChildren(document.querySelector(`[data-text-pid="${this._internalPID}"]`));
       // Update content
@@ -98,7 +96,7 @@ class DocumentTextSection extends React.Component {
       } catch (err) {
         console.warn('Warning: Unable to refresh MathJax upon content update.');
       }
-*/
+      */
     }
 
     // Adjust height of textarea
