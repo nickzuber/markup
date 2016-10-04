@@ -274,8 +274,8 @@ class DocumentTextSection extends React.Component {
 
     // Extract expressions
     var expressionlessRawText = rawText.replace(/(\$)(?:(?=(\\?))\2.)*?\1/g, function (capturedGroup) {
-      purgedExpressions.push(capturedGroup.replace(/([$|$$]*)/g, ''));
-      return '$$';
+      purgedExpressions.push(capturedGroup.replace(/([$]*)/g, ''));
+      return '$ $';
     });
 
     // Parse markdown
@@ -289,7 +289,7 @@ class DocumentTextSection extends React.Component {
     // Parse KaTeX
     try {
       var KatexParsedResult = markdownFormattedText.replace(/(\$)(?:(?=(\\?))\2.)*?\1/g, function (capturedGroup) {
-        var cleanedString = capturedGroup.replace(/([$|$$]*)/g, '');
+        var cleanedString = capturedGroup.replace(/([$]*)/g, '');
         return Katex.renderToString(cleanedString);
       });
       return KatexParsedResult;
