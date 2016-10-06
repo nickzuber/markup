@@ -307,7 +307,8 @@ class DocumentTextSection extends React.Component {
           className="document-text-section"
           data-document-pid={this.props.uniqueId}
           onKeyUp={this.onKeyUp}
-          defaultValue={this.props.text} />
+          defaultValue={this.props.text}
+        />
       );
     }
 

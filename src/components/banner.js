@@ -13,6 +13,8 @@ export const Mode = {
   FULL:   'FULL'
 };
 
+const DOCUMENT_ID = 'document';
+
 const propTypes = {
   viewMode: React.PropTypes.string,
   onExit: React.PropTypes.func.isRequired
@@ -30,11 +32,29 @@ class Banner extends React.Component {
     }
   }
 
+  saveDocument () {
+    if (!localStorage) {
+      console.error('Unable to access local storage');
+      return 1;
+    }
+    localStorage.setItem('markup-document-data', this.props.text);
+    console.log('Document saved to localStorage');
+  }
+
   // Make sure we don't unselect anything
   applyFormattingSafely (e, format) {
     e.preventDefault();
     this.props.documentActions.requestFormatting(format);
     return false;
+  }
+
+  attemptToLoadDocument () {
+    var documentText = localStorage['markup-document-data'];
+    if (documentText) {
+      var textNodeDOM = document.querySelector(`textarea.document-text-section[data-document-pid="${DOCUMENT_ID}"]`);
+      textNodeDOM.value = documentText
+      this.props.documentActions.updateText(documentText);
+    }
   }
 
   getPosition () {
@@ -68,10 +88,17 @@ class Banner extends React.Component {
           <div className="-banner-float-right">
             <div className="-banner-inner-side">
               {/* Save */}
-              <span className="-banner-text -psuedo-link noselect">Save document</span>
+              <span
+                onClick={() => this.saveDocument()}
+                className="-banner-text -psuedo-link noselect">
+                  Save document
+              </span>
 
               {/* Online */}
-              <span className="icon-cloud-alt -icon-size -icon-spacing"></span>
+              <span
+                onClick={() => this.attemptToLoadDocument()}
+                className="icon-cloud-alt -icon-size -icon-spacing">
+              </span>
 
               {/* Notifications */}
               <ComponentWithPopup
@@ -126,7 +153,8 @@ const actions = (dispatch) => ({
 });
 
 const selector = (state) => ({
-  showPopups: state.modes.popups
+  showPopups: state.modes.popups,
+  text: state.document.text
 });
 
 export default connect(selector, actions)(Banner);
