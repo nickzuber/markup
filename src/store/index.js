@@ -6,7 +6,6 @@ import {
   combineReducers
 } from 'redux';
 import thunk from 'redux-thunk';
-import callAPI from '../utilities/middleware/callAPI';
 import * as reducers from '../reducers';
 import createLogger from 'redux-logger';
 
@@ -20,7 +19,6 @@ const store = createStore(
   reducer,
   applyMiddleware(
     thunk,
-    callAPI,
     logger
   )
 );
