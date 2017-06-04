@@ -45,8 +45,6 @@ class DocumentTextSection extends React.Component {
     super(props);
 
     this.onKeyUp = this.onKeyUp.bind(this);
-    this.onMathJaxLoaded = this.onMathJaxLoaded.bind(this);
-
     this._internalPID = generatePid();
     this.DOMParser = null;
     this.lastDocumentHeight = null;
@@ -74,27 +72,13 @@ class DocumentTextSection extends React.Component {
     } else {
       this.lastResultHeight = null;
     }
-    // this.initMathJax();
   }
 
   componentWillReceiveProps (nextProps) {
     // Update uneditable text
     if (nextProps.text !== this.props.text) {
-
       let processedText = this.transpileRawTextData(nextProps.text);
-
       document.querySelector(`[data-text-pid="${this._internalPID}"]`).innerHTML = processedText;
-
-      // let DOMNode = this.getProcessedDOMNode(KatexParsedResult);
-      // this.purgeChildren(document.querySelector(`[data-text-pid="${this._internalPID}"]`));
-      // // Update content
-      // DOMNode.body && document.querySelector(`[data-text-pid="${this._internalPID}"]`).appendChild(DOMNode.body);
-      // // Update MathJax
-      // try {
-      //   window.MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
-      // } catch (err) {
-      //   console.warn('Warning: Unable to refresh MathJax upon content update.');
-      // }
     }
 
     // Adjust height of textarea
@@ -111,33 +95,6 @@ class DocumentTextSection extends React.Component {
       this.replaceSelectedText(nextProps.formatting);
       this.props.documentActions.resetFormatting();
     }
-  }
-
-  // initMathJax () {
-  //   if (!this.mathJaxScript) {
-  //     this.mathJaxScript = document.createElement('script');
-  //     this.mathJaxScript.src = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured';
-  //     this.mathJaxScript.onload = this.onMathJaxLoaded;
-  //     this.mathJaxScript.onerror = () => {
-  //       console.warn('There was a problem while trying to load MathJax for the first time.');
-  //     };
-  //     document.head.appendChild(this.mathJaxScript);
-  //   }
-  // }
-
-  onMathJaxLoaded () {
-    window.MathJax.Hub.Config({
-      TeX: {
-        equationNumbers: {
-          autoNumber: "AMS"
-        }
-      },
-      tex2jax: {
-        displayMath: [ ['$$', '$$'] ],
-        processEscapes: true
-      }
-    });
-    window.MathJax.Hub.Configured();
   }
 
   purgeChildren (DOMNode) {
