@@ -50,7 +50,7 @@ class DocumentTextSection extends React.Component {
     this._internalPID = generatePid();
     this.DOMParser = null;
     this.lastDocumentHeight = null;
-    this.mathJaxScript = null;
+    // this.mathJaxScript = null;
     this.textThrottle = null;
     this.KramdownParser = KramdownParser.setOptions({
       gfm: true,
@@ -74,7 +74,7 @@ class DocumentTextSection extends React.Component {
     } else {
       this.lastResultHeight = null;
     }
-    this.initMathJax();
+    // this.initMathJax();
   }
 
   componentWillReceiveProps (nextProps) {
@@ -85,18 +85,16 @@ class DocumentTextSection extends React.Component {
 
       document.querySelector(`[data-text-pid="${this._internalPID}"]`).innerHTML = processedText;
 
-      /*
-      let DOMNode = this.getProcessedDOMNode(KatexParsedResult);
-      this.purgeChildren(document.querySelector(`[data-text-pid="${this._internalPID}"]`));
-      // Update content
-      DOMNode.body && document.querySelector(`[data-text-pid="${this._internalPID}"]`).appendChild(DOMNode.body);
-      // Update MathJax
-      try {
-        window.MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
-      } catch (err) {
-        console.warn('Warning: Unable to refresh MathJax upon content update.');
-      }
-      */
+      // let DOMNode = this.getProcessedDOMNode(KatexParsedResult);
+      // this.purgeChildren(document.querySelector(`[data-text-pid="${this._internalPID}"]`));
+      // // Update content
+      // DOMNode.body && document.querySelector(`[data-text-pid="${this._internalPID}"]`).appendChild(DOMNode.body);
+      // // Update MathJax
+      // try {
+      //   window.MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+      // } catch (err) {
+      //   console.warn('Warning: Unable to refresh MathJax upon content update.');
+      // }
     }
 
     // Adjust height of textarea
@@ -115,17 +113,17 @@ class DocumentTextSection extends React.Component {
     }
   }
 
-  initMathJax () {
-    if (!this.mathJaxScript) {
-      this.mathJaxScript = document.createElement('script');
-      this.mathJaxScript.src = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured';
-      this.mathJaxScript.onload = this.onMathJaxLoaded;
-      this.mathJaxScript.onerror = () => {
-        console.warn('There was a problem while trying to load MathJax for the first time.');
-      };
-      document.head.appendChild(this.mathJaxScript);
-    }
-  }
+  // initMathJax () {
+  //   if (!this.mathJaxScript) {
+  //     this.mathJaxScript = document.createElement('script');
+  //     this.mathJaxScript.src = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured';
+  //     this.mathJaxScript.onload = this.onMathJaxLoaded;
+  //     this.mathJaxScript.onerror = () => {
+  //       console.warn('There was a problem while trying to load MathJax for the first time.');
+  //     };
+  //     document.head.appendChild(this.mathJaxScript);
+  //   }
+  // }
 
   onMathJaxLoaded () {
     window.MathJax.Hub.Config({
