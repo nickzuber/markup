@@ -288,7 +288,7 @@ class DocumentTextSection extends React.Component {
 
     // Parse KaTeX
     try {
-      var KatexParsedResult = markdownFormattedText.replace(/(\$)(?:(?=(\\?))\2.)*?\1/g, function (capturedGroup) {
+      let KatexParsedResult = markdownFormattedText.replace(/(\$)(?:(?=(\\?))\2.)*?\1/g, function (capturedGroup) {
         var cleanedString = capturedGroup.replace(/([$]*)/g, '');
         return Katex.renderToString(cleanedString);
       });

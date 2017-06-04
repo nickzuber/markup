@@ -52,7 +52,7 @@ class Banner extends React.Component {
     var documentText = localStorage['markup-document-data'];
     if (documentText) {
       var textNodeDOM = document.querySelector(`textarea.document-text-section[data-document-pid="${DOCUMENT_ID}"]`);
-      textNodeDOM.value = documentText
+      textNodeDOM.value = documentText;
       this.props.documentActions.updateText(documentText);
     }
   }
