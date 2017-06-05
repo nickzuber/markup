@@ -13,11 +13,6 @@ Overview
 
 Blah.
 
-Installation
-------------
-
-Blah.
-
 Usage
 -----
 
