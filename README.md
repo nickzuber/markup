@@ -1,5 +1,5 @@
 
-markup
+[markup](https://github.com/nickzuber/markup)
 ========
 
 Create & share TeX snippets with rich math typesetting and markdown support.
