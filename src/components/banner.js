@@ -121,8 +121,11 @@ class Banner extends React.Component {
           {/* Right */}
           <div className="-banner-float-left">
             <div className="-banner-inner-side">
-              <span className="icon-success" />
-              <span className="-banner-text -last-saved-text noselect">Last saved a moment ago</span>
+              {/*<span className="icon-success" />*/}
+              {/*<span className="-banner-text -last-saved-text noselect">Last saved a moment ago</span>*/}
+
+              <span className="icon-error" />
+              <span className="-banner-text -last-saved-text noselect">Work hasn't been saved yet</span>
             </div>
           </div>
         </div>

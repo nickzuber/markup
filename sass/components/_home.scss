@@ -6,7 +6,9 @@
   position: relative;
   background-color: $green;
   display: block;
-  height: 600px;
+  min-height: 800px;
+  height: 800px;
+  height: 100vh;
   width: 100%;
 
   .-banner-title {
@@ -42,16 +44,18 @@
 }
 
 .-landing-example-container {
-  position: absolute;
-  bottom: 0;
+  // position: absolute;
+  // bottom: 0;
   width: 700px;
-  left: 50%;
-  margin-left: -350px;
+  // left: 50%;
+  // margin-left: -350px;
+  position: relative;
+  margin: 0 auto;
 
   .document-text-section {
     padding: 60px 40px 20px;
-    min-height: 300px;
-    max-height: 300px;
+    min-height: 400px;
+    max-height: 400px;
   }
 }
 

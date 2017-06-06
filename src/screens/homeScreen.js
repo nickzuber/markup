@@ -14,7 +14,11 @@ import router from '../router';
 
 const MathJaxLink = 'http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference';
 const KramdownLink = 'http://kramdown.gettalong.org/syntax.html';
-const defaultText = '### MarkUp\n\n> Markdown editing platform that supports MathJax and Kramdown markups.\n\nSupports **math** $\\Omega (n^2)=x$ and _other_ markdown ~~stuff~~ features.';
+const defaultText = `markup
+-----------
+> Create & share TeX snippets with rich math typesetting and markdown support.
+
+Supports _math_ **typesetting** like $T(n) = \\Theta (n^2)$ and markdown ~~stuff~~ features.`;
 
 class HomeScreen extends React.Component {
 
@@ -91,11 +95,12 @@ class HomeScreen extends React.Component {
           </div>
         </div>
 
-        {/* FEATURES BLOCK */}
+        {/* FEATURES BLOCK 
         <div className="-homepage-features-block">
           <img onClick={() => this.openInNewTab(MathJaxLink)} src="img/mathjax.png" />
           <img onClick={() => this.openInNewTab(KramdownLink)} src="img/markdown.png" />
         </div>
+        */}
       </AppBody>
     );
   }

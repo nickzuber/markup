@@ -40,6 +40,7 @@
   background-color: $green;
   display: block;
   width: 100%;
+  min-width: 750px;
   height: 110px;
   z-index: 1;
   @include transition(275ms);
