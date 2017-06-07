@@ -16,6 +16,7 @@ const MathJaxLink = 'http://meta.math.stackexchange.com/questions/5020/mathjax-b
 const KramdownLink = 'http://kramdown.gettalong.org/syntax.html';
 const defaultText = `markup
 -----------
+
 > Create & share TeX snippets with rich math typesetting and markdown support.
 
 Supports _math_ **typesetting** like $T(n) = \\Theta (n^2)$ and markdown ~~stuff~~ features.`;

@@ -8,7 +8,8 @@ import {
   POPUP_HIDE_ALL,
   POPUP_RESET,
   REQUEST_FORMATTING,
-  RESET_FORMATTING
+  RESET_FORMATTING,
+  SAVE_DOCUMENT
 } from './actionTypes';
 
 export function updateText (text) {
@@ -58,5 +59,12 @@ export function requestFormatting (format) {
 export function resetFormatting () {
   return {
     type: RESET_FORMATTING
+  };
+}
+
+export function saveDocument (date_last_saved) {
+  return {
+    type: SAVE_DOCUMENT,
+    date_last_saved
   };
 }

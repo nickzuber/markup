@@ -3,12 +3,14 @@
 import {
   UPDATE_TEXT,
   REQUEST_FORMATTING,
-  RESET_FORMATTING
+  RESET_FORMATTING,
+  SAVE_DOCUMENT
 } from '../actions/actionTypes';
 
 const initialState = {
   text: null,
-  format: null
+  format: null,
+  date_last_saved: null
 };
 
 export default function screenReducer(state = initialState, action) {
@@ -27,6 +29,11 @@ export default function screenReducer(state = initialState, action) {
       return {
         ...state,
         format: null
+      };
+    case SAVE_DOCUMENT:
+      return {
+        ...state,
+        date_last_saved: action.date_last_saved
       };
     default:
       return state;

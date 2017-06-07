@@ -38,7 +38,7 @@ class Banner extends React.Component {
       return 1;
     }
     localStorage.setItem('markup-document-data', this.props.text);
-    console.log('Document saved to localStorage');
+    this.props.documentActions.saveDocument(Date.now());
   }
 
   // Make sure we don't unselect anything
@@ -68,6 +68,15 @@ class Banner extends React.Component {
       default:
         return {transform: 'translateY(-100%)'};
     }
+  }
+
+  generateLastSavedMessage () {
+    const { date_last_saved } = this.props;
+    if (!date_last_saved) {
+      return 'Work hasn\'t been saved yet';
+    }
+    
+    return 'Last saved a moment ago';
   }
 
   render () {
@@ -121,11 +130,10 @@ class Banner extends React.Component {
           {/* Right */}
           <div className="-banner-float-left">
             <div className="-banner-inner-side">
-              {/*<span className="icon-success" />*/}
-              {/*<span className="-banner-text -last-saved-text noselect">Last saved a moment ago</span>*/}
-
-              <span className="icon-error" />
-              <span className="-banner-text -last-saved-text noselect">Work hasn't been saved yet</span>
+              {this.props.date_last_saved
+                ? <span className="icon-success" />
+                : <span className="icon-error" />}
+              <span className="-banner-text -last-saved-text noselect">{this.generateLastSavedMessage()}</span>
             </div>
           </div>
         </div>
@@ -157,7 +165,8 @@ const actions = (dispatch) => ({
 
 const selector = (state) => ({
   showPopups: state.modes.popups,
-  text: state.document.text
+  text: state.document.text,
+  date_last_saved: state.document.date_last_saved
 });
 
 export default connect(selector, actions)(Banner);
