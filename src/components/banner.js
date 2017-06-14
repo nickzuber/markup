@@ -33,12 +33,12 @@ class Banner extends React.Component {
   }
 
   saveDocument () {
-    if (!localStorage) {
-      console.error('Unable to access local storage');
-      return 1;
-    }
-    localStorage.setItem('markup-document-data', this.props.text);
-    this.props.documentActions.saveDocument(Date.now());
+    // if (!localStorage) {
+    //   console.error('Unable to access local storage');
+    //   return 1;
+    // }
+    // localStorage.setItem('markup-document-data', this.props.text);
+    // this.props.documentActions.saveDocument(Date.now());
   }
 
   // Make sure we don't unselect anything
@@ -100,7 +100,7 @@ class Banner extends React.Component {
               <span
                 onClick={() => this.saveDocument()}
                 className="-banner-text -psuedo-link noselect">
-                  Save document
+                  Share document
               </span>
 
               {/* Online */}
