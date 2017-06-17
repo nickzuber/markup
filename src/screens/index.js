@@ -25,6 +25,7 @@ class App extends React.Component {
   }
 
   renderInterfaceComponent() {
+    console.log(router)
     switch(router.current) {
       case 'home':
         return <HomeScreen />;

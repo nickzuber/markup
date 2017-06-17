@@ -14,6 +14,11 @@ const Router = Backbone.Router.extend({
 
     'edit': 'edit',
     '/edit': 'edit',
+    'edit/': 'edit',
+    '/edit/': 'edit',
+
+    'edit/:id': 'edit',
+    '/edit/:id': 'edit',
 
     '*nuts': 'notFound'
   },
@@ -22,7 +27,8 @@ const Router = Backbone.Router.extend({
     this.current = 'home';
   },
 
-  edit () {
+  edit (id) {
+    console.log(id)
     this.current = 'edit';
   },
 

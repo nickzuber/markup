@@ -48,13 +48,12 @@ class Banner extends React.Component {
     return false;
   }
 
-  attemptToLoadDocument () {
-    var documentText = localStorage['markup-document-data'];
-    if (documentText) {
-      var textNodeDOM = document.querySelector(`textarea.document-text-section[data-document-pid="${DOCUMENT_ID}"]`);
-      textNodeDOM.value = documentText;
-      this.props.documentActions.updateText(documentText);
-    }
+  expandDocument () {
+    this.props.documentActions.expandDocument(!this.props.is_expanded);
+    // var textNodeDOM = document.querySelector(`div.document-text-section[data-document-pid="${DOCUMENT_ID}"]`);
+    // this.props.expandDocument
+    //   ? textNodeDOM.classList.add('-expanded-document')
+    //   : textNodeDOM.classList.remove('-expanded-document');
   }
 
   getPosition () {
@@ -103,10 +102,10 @@ class Banner extends React.Component {
                   Share document
               </span>
 
-              {/* Online */}
+              {/* Expand */}
               <span
-                onClick={() => this.attemptToLoadDocument()}
-                className="icon-cloud-alt -icon-size -icon-spacing">
+                onClick={() => this.expandDocument()}
+                className="icon-cal -icon-size -icon-spacing">
               </span>
 
               {/* Notifications */}
@@ -166,7 +165,8 @@ const actions = (dispatch) => ({
 const selector = (state) => ({
   showPopups: state.modes.popups,
   text: state.document.text,
-  date_last_saved: state.document.date_last_saved
+  date_last_saved: state.document.date_last_saved,
+  is_expanded: state.document.is_expanded
 });
 
 export default connect(selector, actions)(Banner);

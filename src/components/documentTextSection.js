@@ -267,12 +267,16 @@ class DocumentTextSection extends React.Component {
       );
     }
 
+    const expanded_class = this.props.is_expanded
+      ? '-expanded-document'
+      : ''
+
     // We append on new DOM node when props change
     return (
       <div
         style={this.props.style}
         data-document-pid={this.props.uniqueId}
-        className="document-text-section -uneditable"
+        className={`document-text-section -uneditable ${expanded_class}`}
       >
         <div data-text-pid={this._internalPID} />
       </div>
@@ -287,4 +291,8 @@ const actions = (dispatch) => ({
   documentActions: bindActionCreators(DocumentActions, dispatch)
 });
 
-export default connect(null, actions)(DocumentTextSection);
+const selector = (state) => ({
+  is_expanded: state.document.is_expanded
+});
+
+export default connect(selector, actions)(DocumentTextSection);

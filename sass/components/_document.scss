@@ -2,10 +2,6 @@
 @import '../utilities/colors';
 @import '../utilities/mixins';
 
-.document-wrapper {
-
-}
-
 textarea {
   font-family: 'Open Sans', sans-serif !important;
   overflow: hidden !important;
@@ -135,4 +131,13 @@ textarea {
   h6:first-of-type {
     margin-top: 0 !important;
   }
+}
+
+.-expanded-document {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding-left: 100px;
+  padding-right: 100px;
 }

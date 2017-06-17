@@ -9,7 +9,8 @@ import {
   POPUP_RESET,
   REQUEST_FORMATTING,
   RESET_FORMATTING,
-  SAVE_DOCUMENT
+  SAVE_DOCUMENT,
+  EXPANDED_VIEW
 } from './actionTypes';
 
 export function updateText (text) {
@@ -66,5 +67,12 @@ export function saveDocument (date_last_saved) {
   return {
     type: SAVE_DOCUMENT,
     date_last_saved
+  };
+}
+
+export function expandDocument (is_expanded) {
+  return {
+    type: EXPANDED_VIEW,
+    is_expanded
   };
 }
