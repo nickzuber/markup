@@ -3,7 +3,7 @@
 @import '../utilities/mixins';
 
 textarea {
-  font-family: 'Open Sans', sans-serif !important;
+  font-family: 'Inconsolata', monospace !important;
   overflow: hidden !important;
 }
 
@@ -23,9 +23,8 @@ textarea {
 
   h1, h2, h3, h4, h5, h6 {
     margin: 0;
-    margin-top: 24px;
-    margin-bottom: 16px;
-    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-top: 48px;
+    margin-bottom: 18px;
     font-weight: 700;
     font-style: normal;
   }
@@ -35,8 +34,8 @@ textarea {
     margin-bottom: 16px;
     font-weight: 400;
     font-style: normal;
-    font-size: 15px;
-    line-height: 25px;
+    font-size: 17px;
+    line-height: 27px;
     letter-spacing: -0.003em;
   }
 
@@ -58,25 +57,21 @@ textarea {
   }
 
   h1 {
-    font-size: 46px;
+    font-size: 42px;
     line-height: 1.04;
-    letter-spacing: -0.035em;
   }
 
   h2 {
-    font-size: 40px;
+    font-size: 34px;
     line-height: 1.04;
-    letter-spacing: -0.03em;
   }
   h3 {
-    font-size: 32px;
+    font-size: 28px;
     line-height: 1.15;
-    letter-spacing: -0.02em;
   }
   h4 {
-    font-size: 24px;
+    font-size: 22px;
     line-height: 1.22;
-    letter-spacing: -0.018em;
   }
 
   a {
