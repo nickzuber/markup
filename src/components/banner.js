@@ -7,6 +7,31 @@ import * as DocumentActions from '../actions/documentActions';
 import {Formats} from './documentTextSection';
 import ComponentWithPopup from './componentWithPopup';
 
+function getTimeMessage (timeInMilliseconds) {
+  const timeInSeconds = timeInMilliseconds / 1000;
+  const MINUTE = 60;
+  const HOUR = 60 * 60;
+
+  // Within a few seconds
+  if (timeInSeconds < 15) return 'Last saved a few seconds ago';
+  // Less than a minute
+  if (timeInSeconds < MINUTE) return 'Last saved less than a minute ago';
+  // Only a few minutes
+  if (timeInSeconds < 15 * MINUTE) return 'Last saved a few minutes ago';
+  // Less than an hour
+  if (timeInSeconds < HOUR) return 'Last saved less than an hour ago';
+  // Single hour
+  if (timeInSeconds < 2 * HOUR) return 'Last saved over an hour ago';
+
+  const timeInHours = Math.round(timeInSeconds / (HOUR));
+
+  // Multiple hours
+  if (timeInSeconds < 24 * HOUR) return `${timeInHours} hours`;
+
+  // Over a day (shouldn't get past this point really too often)
+  return `over a day`;
+}
+
 export const Mode = {
   HIDDEN: 'HIDDEN',
   SHORT:  'SHORT',
@@ -33,12 +58,12 @@ class Banner extends React.Component {
   }
 
   saveDocument () {
-    // if (!localStorage) {
-    //   console.error('Unable to access local storage');
-    //   return 1;
-    // }
-    // localStorage.setItem('markup-document-data', this.props.text);
-    // this.props.documentActions.saveDocument(Date.now());
+    if (!localStorage) {
+      console.error('Unable to access local storage');
+      return 1;
+    }
+    localStorage.setItem('markup-document-data', this.props.text);
+    this.props.documentActions.saveDocument(Date.now());
   }
 
   // Make sure we don't unselect anything
@@ -50,10 +75,6 @@ class Banner extends React.Component {
 
   expandDocument () {
     this.props.documentActions.expandDocument(!this.props.is_expanded);
-    // var textNodeDOM = document.querySelector(`div.document-text-section[data-document-pid="${DOCUMENT_ID}"]`);
-    // this.props.expandDocument
-    //   ? textNodeDOM.classList.add('-expanded-document')
-    //   : textNodeDOM.classList.remove('-expanded-document');
   }
 
   getPosition () {
@@ -70,15 +91,17 @@ class Banner extends React.Component {
   }
 
   generateLastSavedMessage () {
-    const { date_last_saved } = this.props;
+    const { date_last_saved } = this.props
     if (!date_last_saved) {
-      return 'Work hasn\'t been saved yet';
+      return 'Work hasn\'t been saved yet'
     }
     
-    return 'Last saved a moment ago';
+    return getTimeMessage(Date.now() - date_last_saved)
   }
 
   render () {
+    const expandIconStyle = this.props.is_expanded ? '-icon-activated' : ''
+    
     return (
       <div
         className="-document-banner"
@@ -95,17 +118,23 @@ class Banner extends React.Component {
           {/* Left */}
           <div className="-banner-float-right">
             <div className="-banner-inner-side">
-              {/* Save */}
+              {/* Share */}
               <span
                 onClick={() => this.saveDocument()}
                 className="-banner-text -psuedo-link noselect">
-                  Share document
+                  Share
+              </span>
+
+              {/* Save */}
+              <span
+                onClick={() => this.saveDocument()}
+                className={`icon-cloud-alt -icon-size -icon-spacing ${expandIconStyle}`}>
               </span>
 
               {/* Expand */}
               <span
                 onClick={() => this.expandDocument()}
-                className="icon-cal -icon-size -icon-spacing">
+                className={`icon-expand -icon-size -icon-spacing ${expandIconStyle}`}>
               </span>
 
               {/* Notifications */}

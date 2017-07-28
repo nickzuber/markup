@@ -5,3 +5,23 @@
       -ms-transition: all $ms cubic-bezier(.2,0,.2,1);
           transition: all $ms cubic-bezier(.2,0,.2,1);
 }
+
+@mixin gradient {
+  /* IE10+ */ 
+  background-image: -ms-linear-gradient(bottom left, #6D54BF 0%, #FF6BEB 100%);
+
+  /* Mozilla Firefox */ 
+  background-image: -moz-linear-gradient(bottom left, #6D54BF 0%, #FF6BEB 100%);
+
+  /* Opera */ 
+  background-image: -o-linear-gradient(bottom left, #6D54BF 0%, #FF6BEB 100%);
+
+  /* Webkit (Safari/Chrome 10) */ 
+  background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0, #6D54BF), color-stop(100, #FF6BEB));
+
+  /* Webkit (Chrome 11+) */ 
+  background-image: -webkit-linear-gradient(bottom left, #6D54BF 0%, #FF6BEB 100%);
+
+  /* W3C Markup */ 
+  background-image: linear-gradient(to top right, #6D54BF 0%, #FF6BEB 100%);
+}

@@ -12,10 +12,8 @@ import * as GeneralActions from '../actions/generalActions';
 import Typed from 'typed-lite';
 import router from '../router';
 
-const MathJaxLink = 'http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference';
-const KramdownLink = 'http://kramdown.gettalong.org/syntax.html';
 const defaultText = `markup
------------
+------
 
 > Create & share TeX snippets with rich math typesetting and markdown support.
 
@@ -81,27 +79,22 @@ class HomeScreen extends React.Component {
               label={'Create a new document'}
               onClick={() => this.routeToEdit()}
             />
-            <DocumentTextSection
-              uniqueId={'home'}
-              style={{float:'left'}}
-              editable={true}
-              text={defaultText}
-            />
-            <DocumentTextSection
-              uniqueId={'home'}
-              style={{float:'right'}}
-              editable={false}
-              text={this.props.text}
-            />
+            <div className="-landing-example-document-container">
+              <DocumentTextSection
+                uniqueId={'home'}
+                style={{float:'left'}}
+                editable={true}
+                text={defaultText}
+              />
+              <DocumentTextSection
+                uniqueId={'home'}
+                style={{float:'right'}}
+                editable={false}
+                text={this.props.text}
+              />
+            </div>
           </div>
         </div>
-
-        {/* FEATURES BLOCK 
-        <div className="-homepage-features-block">
-          <img onClick={() => this.openInNewTab(MathJaxLink)} src="img/mathjax.png" />
-          <img onClick={() => this.openInNewTab(KramdownLink)} src="img/markdown.png" />
-        </div>
-        */}
       </AppBody>
     );
   }

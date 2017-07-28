@@ -1,11 +1,12 @@
 'use strict';
 
-import Backbone from 'backbone';
-import Promise from 'bluebird';
+import Backbone from 'backbone'
+import Promise from 'bluebird'
+import Shortid from 'shortid'
 import {
   addClass,
   removeClass
-} from './utilities/general';
+} from './utilities/general'
 
 const Router = Backbone.Router.extend({
   routes: {
@@ -28,7 +29,9 @@ const Router = Backbone.Router.extend({
   },
 
   edit (id) {
-    console.log(id)
+    if (id) {
+      console.log(`ID was found: ${id}`)
+    }
     this.current = 'edit';
   },
 

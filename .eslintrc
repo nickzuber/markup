@@ -15,7 +15,7 @@ rules:
   no-unreachable: 2
   no-var: 0
   space-before-function-paren: 0
-  semi: [2, "always"]
+  semi: [2, never]
   object-curly-spacing: 0
   array-bracket-spacing: 0
   no-multiple-empty-lines: [2, {"max": 1}]

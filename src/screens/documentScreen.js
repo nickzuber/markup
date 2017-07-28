@@ -23,12 +23,27 @@ class DocumentScreen extends React.Component {
     super(props);
 
     this.onScroll = this.onScroll.bind(this);
-
     this.lastPositionY = 0;
+
+    this.state = {
+      defaultText: ''
+    }
   }
 
   componentWillMount () {
     this.props.documentActions.hideAllPopups();
+    
+    // Check for local save data
+    // @TODO this should have lower priority over URL hashes
+    const localSaveData = localStorage.getItem('markup-document-data')
+    if (localSaveData) {
+      this.setState((oldState) => {
+        return {
+          defaultText: localSaveData
+        }
+      })
+      this.props.documentActions.updateText(localSaveData)
+    }
   }
 
   componentDidMount () {
@@ -39,6 +54,11 @@ class DocumentScreen extends React.Component {
   componentWillUnmount () {
     window && window.removeEventListener('scroll', this.onScroll);
     clearTimeout(this.animateIn);
+  }
+
+  getDefaultText () {
+    // @TODO URL hash data comes in here probably
+    return '';
   }
 
   onScroll (event) {
@@ -87,6 +107,7 @@ class DocumentScreen extends React.Component {
         <AppBody>
           <DocumentTextSection
             formatting={this.props.format}
+            text={this.state.defaultText}
             uniqueId={'document'}
             style={{float:'left'}}
             editable={true}

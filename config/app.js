@@ -16,16 +16,20 @@ exports.env = DEV_FLAG ? Environments.DEV : Environments.PROD;
 switch (exports.env) {
   case Environments.DEV:
     env_server = {
-      port: 8080,
+      port: 80,
       ip: '127.0.0.1',
+      hostname: 'http://markup.dev',
+		  apiHostname: 'http://api.markup.dev',
       domain: 'localhost'
     }
     break;
   case Environments.PROD:
     env_server = {
       port: 80,
-      ip: 'MISSING IP',
-      domain: 'http://www.nickzuber.com/'
+      ip: '127.0.0.1',
+      hostname: 'http://markup.pw',
+      apiHostname: 'http://api.markup.pw',
+      domain: 'markup.pw'
     }
     break;
   default:

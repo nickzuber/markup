@@ -19,20 +19,29 @@ Contributing
 ```
 $ git clone git@github.com:nickzuber/markup.git
 $ cd markup
-$ npm install
+$ npm i --no-shrinkwrap
 ```
 
 If npm is giving you a hard time for whatever reason, try removing the lock file and reinstalling dependencies.
 
 ```
 $ rm package-lock.json
-$ npm install
+$ npm i --no-shrinkwrap
 ```
 
 And if _that_ doesn't work, try using npm version 5.0.2
 
 ```
 $ npm i -g npm@5.0.2
+```
+
+#### Setting Up
+
+Now you want configure your host files so you can access the development site locally. Add the following to your `/etc/hosts` file.
+
+```
+127.0.0.1 markup.dev
+127.0.0.1 api.markup.dev
 ```
 
 #### Building
@@ -48,7 +57,7 @@ $ npm run build:app
 You generally want to build the css and app at the same time. We use hot loading with webpack. 
 
 ```
-$ npm run build:sass & npm run dev &
+$ npm run dev & npm run sass &
 ```
 
 Code will recompile as you save it in real time (woo!)

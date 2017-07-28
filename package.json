@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "build:app": "./node_modules/.bin/gulp sass && webpack --config webpack.config.js && node server.js",
-    "build:sass": "./node_modules/.bin/gulp sass && ./node_modules/.bin/gulp watch",
+    "build:sass": "./node_modules/.bin/gulp sass",
+    "sass": "./node_modules/.bin/gulp sass && ./node_modules/.bin/gulp watch",
     "dev": "webpack --config webpack.dev.config.js && node server.dev.js",
-    "sass": "./node_modules/.bin/gulp sass",
     "watch": "./node_modules/.bin/gulp watch",
     "ci": "./node_modules/.bin/eslint --config .eslintrc src/**/*.js",
     "lint": "./node_modules/.bin/eslint --config .eslintrc src/**/*.js || true"
@@ -55,29 +55,33 @@
     "react-hot-loader": "^1.3.0",
     "redux-logger": "^2.6.1",
     "webpack": "^1.13.1",
-    "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-middleware": "^1.11.0",
     "webpack-dev-server": "^1.14.1",
-    "webpack-hot-middleware": "^2.10.0"
+    "webpack-hot-middleware": "^2.18.2"
   },
   "dependencies": {
-    "@fdaciuk/ajax": "^2.1.2",
+    "@fdaciuk/ajax": "^2.3.0",
     "backbone": "^1.3.3",
     "bluebird": "^3.4.5",
     "express": "^4.13.4",
+    "express-subdomain": "^1.0.5",
     "highlight.js": "^9.6.0",
     "jade": "^1.11.0",
     "jspdf": "^1.3.3",
-    "katex": "^0.6.0",
+    "katex": "^0.7.1",
     "kramed": "^0.5.6",
     "lodash": "^4.13.1",
     "moment": "^2.13.0",
-    "react": "^15.1.0",
-    "react-dom": "^15.1.0",
+    "mongodb": "^2.2.30",
+    "mongoose": "^4.11.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "react-redux": "^4.4.5",
-    "redux": "^3.5.2",
+    "redux": "^3.7.2",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.1",
     "shortid": "^2.2.6",
-    "typed-lite": "^1.0.2"
+    "typed-lite": "^1.0.2",
+    "yarn": "^0.27.5"
   }
 }

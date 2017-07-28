@@ -1,7 +1,9 @@
-'use strict';
+'use strict'
 
-const config = require('../config');
-const shortid = require('shortid');
+const config = require('../config')
+const mongoose = require('mongoose')
+const shortid = require('shortid')
+
 
 module.exports = app => {
   app.get('/**', (req, res) => {
@@ -9,4 +11,4 @@ module.exports = app => {
       user_id: shortid.generate()
     })
   })
-};
+}
