@@ -4,7 +4,7 @@
 
 Create & share TeX snippets with rich math typesetting and markdown support.
 
-[![Build Status](https://travis-ci.org/nickzuber/markup.svg?branch=master)]()
+[![Build Status](https://travis-ci.org/markup-app/markup.svg?branch=master)]()
 [![Deps Status](https://david-dm.org/nickzuber/markup/status.svg)]()
 [![License](https://img.shields.io/badge/license-MIT%20Licence-blue.svg)]()
 
