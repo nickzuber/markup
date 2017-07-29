@@ -6,6 +6,7 @@ const routes = require('./routes')
 const path = require('path')
 const fs = require('fs')
 const http = require('http')
+const cors = require('cors')
 const express = require('express')
 const subdomain = require('express-subdomain')
 
@@ -24,6 +25,8 @@ const db = require('./db')
 
 app.set('view engine', 'jade')
 app.set('views', './views')
+
+app.use(cors())
 
 // Hook up API subdomain
 const api_router = express.Router()

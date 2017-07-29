@@ -28,7 +28,7 @@ module.exports = app => {
 
     // Generate hash and collect content
     const hash = shortid.generate()
-    const content = 'Test content'
+    const content = 'Test content\n------------\n\n>Some text for the quote\n\nAnd here is some $\\rho=1$ math'
     const _owner = ip
     
     // Create post

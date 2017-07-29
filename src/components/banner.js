@@ -1,36 +1,13 @@
 'use strict';
 
 import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as DocumentActions from '../actions/documentActions';
-import {Formats} from './documentTextSection';
+import { Formats } from './documentTextSection';
 import ComponentWithPopup from './componentWithPopup';
-
-function getTimeMessage (timeInMilliseconds) {
-  const timeInSeconds = timeInMilliseconds / 1000;
-  const MINUTE = 60;
-  const HOUR = 60 * 60;
-
-  // Within a few seconds
-  if (timeInSeconds < 15) return 'Last saved a few seconds ago';
-  // Less than a minute
-  if (timeInSeconds < MINUTE) return 'Last saved less than a minute ago';
-  // Only a few minutes
-  if (timeInSeconds < 15 * MINUTE) return 'Last saved a few minutes ago';
-  // Less than an hour
-  if (timeInSeconds < HOUR) return 'Last saved less than an hour ago';
-  // Single hour
-  if (timeInSeconds < 2 * HOUR) return 'Last saved over an hour ago';
-
-  const timeInHours = Math.round(timeInSeconds / (HOUR));
-
-  // Multiple hours
-  if (timeInSeconds < 24 * HOUR) return `${timeInHours} hours`;
-
-  // Over a day (shouldn't get past this point really too often)
-  return `over a day`;
-}
+import { getTimeMessage } from '../utilities/general'
+import markupAPI from '../utilities/api'
 
 export const Mode = {
   HIDDEN: 'HIDDEN',
@@ -128,7 +105,7 @@ class Banner extends React.Component {
               {/* Save */}
               <span
                 onClick={() => this.saveDocument()}
-                className={`icon-cloud-alt -icon-size -icon-spacing ${expandIconStyle}`}>
+                className={'icon-cloud-alt -icon-size -icon-spacing'}>
               </span>
 
               {/* Expand */}

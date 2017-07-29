@@ -45,7 +45,7 @@ class DocumentTextSection extends React.Component {
     super(props);
 
     this.onKeyUp = this.onKeyUp.bind(this);
-    this._internalPID = generatePid();
+    this._internalPID = 'pid';
     this.DOMParser = null;
     this.lastDocumentHeight = null;
     // this.mathJaxScript = null;

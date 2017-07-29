@@ -29,8 +29,10 @@ const Router = Backbone.Router.extend({
   },
 
   edit (id) {
-    if (id) {
-      console.log(`ID was found: ${id}`)
+    if (id) { 
+      this._posthash = id
+    } else {
+      delete this._posthash
     }
     this.current = 'edit';
   },

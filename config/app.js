@@ -1,6 +1,5 @@
 'use strict';
 
-const fs = require('fs');
 var env_server = {};
 
 // Set flag on when in development mode
