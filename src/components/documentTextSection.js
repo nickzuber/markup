@@ -11,6 +11,8 @@ import Katex from 'katex';
 
 const THROTTLE = 0;
 
+const STATIC_PID = '_STATIC_PID'
+
 // @TODO move this to constants file
 export const Formats = {
   BOLD: 'BOLD',
@@ -45,10 +47,9 @@ class DocumentTextSection extends React.Component {
     super(props);
 
     this.onKeyUp = this.onKeyUp.bind(this);
-    this._internalPID = 'pid';
+    this._internalPID = STATIC_PID;
     this.DOMParser = null;
     this.lastDocumentHeight = null;
-    // this.mathJaxScript = null;
     this.textThrottle = null;
     this.KramdownParser = KramdownParser.setOptions({
       gfm: true,

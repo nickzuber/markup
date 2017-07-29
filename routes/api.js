@@ -3,9 +3,16 @@
 const config = require('../config')
 const mongoose = require('mongoose')
 const shortid = require('shortid')
-
+const RateLimit = require('express-rate-limit')
 const Post = require('../models/post')
 
+const apiLimiter = new RateLimit({
+  windowMs: 15 * 60 * 1000,   // 15 minutes
+  max: 3,                   // limit each IP to 100 requests per windowMs
+  delayAfter: 10,             // begin slowing down responses after the 10th request
+  delayMs: 3 * 1000,          // slow down subsequent responses by 3 seconds per request
+  message: 'Too many accounts created from this IP, please try again in 15 minutes'
+})
 
 module.exports = app => {
   app.get('/posts/:posthash', (req, res) => {
@@ -19,16 +26,19 @@ module.exports = app => {
     })
   })
 
-  app.get('/create', (req, res) => {
+  app.post('/create', apiLimiter, (req, res) => {
     // Collect user IP for rate limiting
     const ip = req.headers['x-forwarded-for'] ||
       req.connection.remoteAddress ||
       req.socket.remoteAddress ||
       req.connection.socket.remoteAddress
 
+    console.log(req.headers)
+    console.log(res.headers)
+
     // Generate hash and collect content
     const hash = shortid.generate()
-    const content = 'Test content\n------------\n\n>Some text for the quote\n\nAnd here is some $\\rho=1$ math'
+    const content = req.body.content
     const _owner = ip
     
     // Create post

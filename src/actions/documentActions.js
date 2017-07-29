@@ -12,6 +12,7 @@ import {
   SAVE_DOCUMENT,
   EXPANDED_VIEW,
   FETCH_POST_FROM_HASH,
+  CREATE_NEW_POST,
 } from './actionTypes'
 import markupAPI from '../utilities/api'
 
@@ -83,5 +84,12 @@ export function fetchPostFromHash (posthash) {
   return {
     type: FETCH_POST_FROM_HASH,
     callAPI: () => markupAPI.getPost(posthash)
+  }
+}
+
+export function createNewPost (text) {
+  return {
+    type: CREATE_NEW_POST,
+    callAPI: () => markupAPI.createPost(text)
   }
 }

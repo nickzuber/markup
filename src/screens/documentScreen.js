@@ -1,14 +1,15 @@
 'use strict';
 
-import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import Banner, {Mode} from '../components/banner';
-import AppBody from '../components/appBody';
-import DocumentTextSection from '../components/documentTextSection';
-import * as DocumentActions from '../actions/documentActions';
-import * as GeneralActions from '../actions/generalActions';
-import router from '../router';
+import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import Banner, { Mode } from '../components/banner'
+import AppBody from '../components/appBody'
+import DocumentTextSection from '../components/documentTextSection'
+import * as DocumentActions from '../actions/documentActions'
+import * as GeneralActions from '../actions/generalActions'
+import router from '../router'
+import Config from '../../config'
 
 // Reflects the scrolling speed needed to trigger the banner animating to full
 const SCROLL_EASING = 4;
@@ -64,6 +65,10 @@ class DocumentScreen extends React.Component {
     if (this.props.fetch_post_text === null && nextProps.fetch_post_text !== null) {
       this.setState((oldState) => ({ defaultText: nextProps.fetch_post_text }))
       this.props.documentActions.updateText(nextProps.fetch_post_text)
+    }
+    // If we need to update the URL
+    if (this.props.save_post_status === 'request' && nextProps.save_post_status === 'success') {
+      window.history.pushState(null, null, `${Config.app.server.hostname}/edit/${nextProps.save_post_hash}`)
     }
   }
 
@@ -130,6 +135,7 @@ class DocumentScreen extends React.Component {
           viewMode={this.props.bannerMode}
           onExit={() => {
             this.props.documentActions.hideBanner();
+            this.props.documentActions.expandDocument(false);
             this.props.generalActions.unloadPage();
             setTimeout(() => {
               router.navigate('/', {trigger: true});
@@ -173,6 +179,8 @@ const selector = (state) => ({
   format: state.document.format,
   fetch_post_status: state.document.fetch_post_status,
   fetch_post_text: state.document.fetch_post_text,
+  save_post_status: state.document.save_post_status,
+  save_post_hash: state.document.save_post_hash,
 });
 
 export default connect(selector, actions)(DocumentScreen);

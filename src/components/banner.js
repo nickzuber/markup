@@ -43,6 +43,10 @@ class Banner extends React.Component {
     this.props.documentActions.saveDocument(Date.now());
   }
 
+  shareDocument () {
+    this.props.documentActions.createNewPost(this.props.text)
+  }
+
   // Make sure we don't unselect anything
   applyFormattingSafely (e, format) {
     e.preventDefault();
@@ -97,7 +101,7 @@ class Banner extends React.Component {
             <div className="-banner-inner-side">
               {/* Share */}
               <span
-                onClick={() => this.saveDocument()}
+                onClick={() => this.shareDocument()}
                 className="-banner-text -psuedo-link noselect">
                   Share
               </span>

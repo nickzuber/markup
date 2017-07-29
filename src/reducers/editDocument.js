@@ -7,6 +7,7 @@ import {
   SAVE_DOCUMENT,
   EXPANDED_VIEW,
   FETCH_POST_FROM_HASH,
+  CREATE_NEW_POST,
 } from '../actions/actionTypes'
 import Status from '../middleware/robin-redux-api-middleware/constants/status'
 
@@ -15,6 +16,8 @@ const initialState = {
   format: null,
   fetch_post_status: null,
   fetch_post_text: null,
+  save_post_status: null,
+  save_post_hash: null,
   date_last_saved: null,
   is_expanded: false,
 }
@@ -65,6 +68,27 @@ export default function screenReducer(state = initialState, action) {
             ...state,
             fetch_post_status: Status.REQUEST,
             fetch_post_text: null
+          }
+      }
+    case CREATE_NEW_POST:
+      switch (action.status) {
+        case Status.SUCCESS:
+          return {
+            ...state,
+            save_post_status: Status.SUCCESS,
+            save_post_hash: action.response && action.response.hash,
+          }
+        case Status.FAILURE:
+          return {
+            ...state,
+            save_post_status: Status.FAILURE,
+            save_post_hash: null,
+          }
+        case Status.REQUEST:
+          return {
+            ...state,
+            save_post_status: Status.REQUEST,
+            save_post_hash: null,
           }
       }
     default:
