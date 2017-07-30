@@ -33,9 +33,6 @@ module.exports = app => {
       req.socket.remoteAddress ||
       req.connection.socket.remoteAddress
 
-    console.log(req.headers)
-    console.log(res.headers)
-
     // Generate hash and collect content
     const hash = shortid.generate()
     const content = req.body.content

@@ -147,3 +147,35 @@ textarea {
 .-icon-activated {
   color: #ffffff !important;
 }
+
+.document-alert {
+  position: fixed;
+  z-index: 2147;
+  left: 0;
+  top: 0;
+  height: 15px;
+  font-family: BlinkMacSystemFont,-apple-system,sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+  transform: translateY(0);
+  @include transition(275ms);
+}
+.-alert-hide {
+  transform: translateY(-36px);
+}
+.-alert-success {
+  background: #4dadf7;
+}
+.-alert-warning {
+  background: #fcc419;
+}
+.-alert-failure {
+  background: #f03e3e;
+}
+.-alert-log {
+  background: #b197fc;
+}

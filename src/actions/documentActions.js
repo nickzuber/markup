@@ -13,6 +13,8 @@ import {
   EXPANDED_VIEW,
   FETCH_POST_FROM_HASH,
   CREATE_NEW_POST,
+  ALERT_SHOW,
+  ALERT_HIDE,
 } from './actionTypes'
 import markupAPI from '../utilities/api'
 
@@ -91,5 +93,19 @@ export function createNewPost (text) {
   return {
     type: CREATE_NEW_POST,
     callAPI: () => markupAPI.createPost(text)
+  }
+}
+
+export function showAlert (message, alertType) {
+  return {
+    type: ALERT_SHOW,
+    message,
+    alertType,
+  }
+}
+
+export function hideAlert () {
+  return {
+    type: ALERT_HIDE
   }
 }

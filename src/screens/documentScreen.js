@@ -4,6 +4,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Banner, { Mode } from '../components/banner'
+import Alert, { AlertTypes } from '../components/alert'
 import AppBody from '../components/appBody'
 import DocumentTextSection from '../components/documentTextSection'
 import * as DocumentActions from '../actions/documentActions'
@@ -26,7 +27,10 @@ class DocumentScreen extends React.Component {
     this.onScroll = this.onScroll.bind(this);
     this.lastPositionY = 0;
 
-    this.state = { defaultText: null }
+    this.state = {
+      defaultText: null,
+      readyToLoadDocuments: false,
+    }
   }
 
   componentWillMount () {
@@ -66,10 +70,56 @@ class DocumentScreen extends React.Component {
       this.setState((oldState) => ({ defaultText: nextProps.fetch_post_text }))
       this.props.documentActions.updateText(nextProps.fetch_post_text)
     }
-    // If we need to update the URL
-    if (this.props.save_post_status === 'request' && nextProps.save_post_status === 'success') {
+
+    // If we need to update the URL.
+    if (this.props.save_post_status === 'request' &&
+        nextProps.save_post_status === 'success' &&
+        nextProps.save_post_hash) {
+      // Update the URL only if we've just successfully saved a post.
       window.history.pushState(null, null, `${Config.app.server.hostname}/edit/${nextProps.save_post_hash}`)
     }
+
+    // Set document loading state
+    this.setDocumentLoadingState(nextProps)
+  }
+
+  setDocumentLoadingState (nextProps) {
+    // No post hash then there's no hash in the URL so we're ready to load.
+    if (!this.props.postHash){
+      return this.setState(oldState => ({
+        readyToLoadDocuments: true
+      }))
+    }
+
+    // API call was fine when we were waiting for it, but no post matched the given hash.
+    if (this.props.fetch_post_status === 'request' &&
+        nextProps.fetch_post_status === 'success' &&
+        nextProps.fetch_post_text === null) {
+      // If there isn't an alert already showing, then show this one.
+      if (!nextProps.alert.show) {
+        let message = 'Hmm, this document doesn\'t seem to exist.'
+        nextProps.documentActions.showAlert(message, AlertTypes.WARNING)
+      }
+    }
+
+    // API call failed when we were waiting for it.
+    if (this.props.fetch_post_status === 'request' && nextProps.fetch_post_status === 'failure') {
+      let message = 'Oops! Something went wrong when trying to load this document.'
+      nextProps.documentActions.showAlert(message, AlertTypes.FAILURE)
+    }
+
+    // API call failed when we were waiting for it.
+    if (this.props.save_post_status === 'request' && nextProps.save_post_status === 'failure') {
+      let message = 'Oops! Something went wrong when trying to save your document.'
+      nextProps.documentActions.showAlert(message, AlertTypes.FAILURE)
+    }
+
+    // Fetch status is successful, we can assume we've already loaded the text.
+    const ready = nextProps.fetch_post_status === 'success'
+
+    this.setState(oldState => ({
+      readyToLoadDocuments: ready
+    }))
   }
 
   onScroll (event) {
@@ -100,37 +150,18 @@ class DocumentScreen extends React.Component {
     this.lastPositionY = newPositionY;
   }
 
-  readyToLoadDocuments () {
-    // No post hash then we're waiting on nothing.
-    if (!this.props.postHash) return true
-
-    // API call was fine, but no post matched the given hash.
-    if (this.props.fetch_post_status === 'success' && this.props.fetch_post_text === null) {
-      console.log('no post found with that hash')
-    }
-
-    // API call failed, we should display a message for this.
-    if (this.props.fetch_post_status === 'failure') {
-      console.log('api call failed')
-    }
-
-    // Waiting for API call, might want to display a message here.
-    if (this.props.fetch_post_status === 'request') {
-      console.log('loading...')
-    }
-
-    // Fetch status is successful, we can assume we've already loaded the text.
-    return this.props.fetch_post_status === 'success'
-  }
-
   render() {
     // There's a weird React bug with the textarea and `defaultValue` so we can't
     // update that field and expect the textarea to rerender correctly.
     // So basically we can only load defaultValue ONCE per app lifecycle, so choose carefully.
     // If there's a `postHash` with this render then we try to wait for the API call.
-
     return (
       <div className="document-wrapper">
+        <Alert
+          isVisible={this.props.alert.show}
+          message={this.props.alert.message}
+          alertType={this.props.alert.alertType}
+        />
         <Banner
           viewMode={this.props.bannerMode}
           onExit={() => {
@@ -144,7 +175,7 @@ class DocumentScreen extends React.Component {
             }, 275);
           }}
         />
-        {this.readyToLoadDocuments()
+        {this.state.readyToLoadDocuments
         ? (<AppBody>
             <DocumentTextSection
               formatting={this.props.format}
@@ -181,6 +212,7 @@ const selector = (state) => ({
   fetch_post_text: state.document.fetch_post_text,
   save_post_status: state.document.save_post_status,
   save_post_hash: state.document.save_post_hash,
+  alert: state.document.alert,
 });
 
 export default connect(selector, actions)(DocumentScreen);

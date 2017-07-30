@@ -176,7 +176,7 @@ const selector = (state) => ({
   showPopups: state.modes.popups,
   text: state.document.text,
   date_last_saved: state.document.date_last_saved,
-  is_expanded: state.document.is_expanded
+  is_expanded: state.document.is_expanded,
 });
 
 export default connect(selector, actions)(Banner);

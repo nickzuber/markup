@@ -8,6 +8,8 @@ import {
   EXPANDED_VIEW,
   FETCH_POST_FROM_HASH,
   CREATE_NEW_POST,
+  ALERT_SHOW,
+  ALERT_HIDE,
 } from '../actions/actionTypes'
 import Status from '../middleware/robin-redux-api-middleware/constants/status'
 
@@ -19,6 +21,11 @@ const initialState = {
   save_post_status: null,
   save_post_hash: null,
   date_last_saved: null,
+  alert: {
+    show: false,
+    message: null,
+    alertType: null,
+  },
   is_expanded: false,
 }
 
@@ -90,6 +97,28 @@ export default function screenReducer(state = initialState, action) {
             save_post_status: Status.REQUEST,
             save_post_hash: null,
           }
+      }
+    case ALERT_SHOW:
+      const {
+        message,
+        alertType,
+      } = action
+      return {
+        ...state,
+        alert: {
+          show: true,
+          message,
+          alertType,
+        }
+      }
+    case ALERT_HIDE:
+      return {
+        ...state,
+        alert: {
+          show: false,
+          message: null,
+          alertType: null,
+        }
       }
     default:
       return state
