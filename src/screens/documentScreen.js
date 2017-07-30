@@ -77,6 +77,8 @@ class DocumentScreen extends React.Component {
         nextProps.save_post_hash) {
       // Update the URL only if we've just successfully saved a post.
       window.history.pushState(null, null, `${Config.app.server.hostname}/edit/${nextProps.save_post_hash}`)
+      let message = 'Document successfully saved! Share the URL for others to see!'
+      nextProps.documentActions.showAlert(message, AlertTypes.SUCCESS)
     }
 
     // Set document loading state
@@ -95,7 +97,6 @@ class DocumentScreen extends React.Component {
     if (this.props.fetch_post_status === 'request' &&
         nextProps.fetch_post_status === 'success' &&
         nextProps.fetch_post_text === null) {
-      // If there isn't an alert already showing, then show this one.
       if (!nextProps.alert.show) {
         let message = 'Hmm, this document doesn\'t seem to exist.'
         nextProps.documentActions.showAlert(message, AlertTypes.WARNING)
@@ -104,14 +105,16 @@ class DocumentScreen extends React.Component {
 
     // API call failed when we were waiting for it.
     if (this.props.fetch_post_status === 'request' && nextProps.fetch_post_status === 'failure') {
-      let message = 'Oops! Something went wrong when trying to load this document.'
-      nextProps.documentActions.showAlert(message, AlertTypes.FAILURE)
+      if (!nextProps.alert.show) {
+        let message = 'Oops! Something went wrong when trying to load this document.'
+        return nextProps.documentActions.showAlert(message, AlertTypes.FAILURE)
+      }
     }
 
     // API call failed when we were waiting for it.
     if (this.props.save_post_status === 'request' && nextProps.save_post_status === 'failure') {
       let message = 'Oops! Something went wrong when trying to save your document.'
-      nextProps.documentActions.showAlert(message, AlertTypes.FAILURE)
+      return nextProps.documentActions.showAlert(message, AlertTypes.FAILURE)
     }
 
     // Fetch status is successful, we can assume we've already loaded the text.
