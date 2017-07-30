@@ -86,13 +86,6 @@ class DocumentScreen extends React.Component {
   }
 
   setDocumentLoadingState (nextProps) {
-    // No post hash then there's no hash in the URL so we're ready to load.
-    if (!this.props.postHash){
-      return this.setState(oldState => ({
-        readyToLoadDocuments: true
-      }))
-    }
-
     // API call was fine when we were waiting for it, but no post matched the given hash.
     if (this.props.fetch_post_status === 'request' &&
         nextProps.fetch_post_status === 'success' &&
@@ -117,12 +110,19 @@ class DocumentScreen extends React.Component {
       return nextProps.documentActions.showAlert(message, AlertTypes.FAILURE)
     }
 
-    // Fetch status is successful, we can assume we've already loaded the text.
-    const ready = nextProps.fetch_post_status === 'success'
+    // No post hash then there's no hash in the URL so we're ready to load.
+    if (!this.props.postHash){
+      this.setState(oldState => ({
+        readyToLoadDocuments: true
+      }))
+    } 
 
-    this.setState(oldState => ({
-      readyToLoadDocuments: ready
-    }))
+    // Fetch status is successful, we can assume we've already loaded the text.
+    else {
+      this.setState(oldState => ({
+        readyToLoadDocuments: nextProps.fetch_post_status === 'success'
+      }))
+    }
   }
 
   onScroll (event) {
