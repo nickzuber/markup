@@ -67,12 +67,14 @@ class HomeScreen extends React.Component {
       <AppBody>
         {/* LANDING BLOCK */}
         <div className="-homepage-landing-block">
+
           {/* Header */}
           <h1 className="-banner-title noselect">markup</h1>
           <h2 className="-banner-sub-title noselect">
             Write something&nbsp;
             <span className="-dynamic-typing-area">meaningful</span>
           </h2>
+
           {/* Interactive example */}
           <div className="-landing-example-container">
             <Button
@@ -94,6 +96,13 @@ class HomeScreen extends React.Component {
               />
             </div>
           </div>
+
+          {/* Sample posts section */}
+          <DocumentTextSection
+            uniqueId={'sample1'}
+            editable={false}
+            text={'this is a test'}
+          />
         </div>
       </AppBody>
     );

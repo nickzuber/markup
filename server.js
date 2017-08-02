@@ -19,5 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 routes(app)
 
+// THIS IS OUT OF DATE WITH THE DEV SERVER
+
 server.listen(config.app.server.port)
 console.log(`http server listening on port ${config.app.server.port}...`)

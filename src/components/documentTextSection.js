@@ -1,10 +1,10 @@
 'use strict';
 
 import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as DocumentActions from '../actions/documentActions';
-import {generatePid} from '../utilities/general';
+import { generatePid } from '../utilities/general';
 import KramdownParser from 'kramed';
 import Highlight from 'highlight.js';
 import Katex from 'katex';
@@ -47,7 +47,7 @@ class DocumentTextSection extends React.Component {
     super(props);
 
     this.onKeyUp = this.onKeyUp.bind(this);
-    this._internalPID = STATIC_PID;
+    this._internalPID = `STATIC_PID_${props.uniqueId}`;
     this.DOMParser = null;
     this.lastDocumentHeight = null;
     this.textThrottle = null;
@@ -73,6 +73,12 @@ class DocumentTextSection extends React.Component {
     } else {
       this.lastResultHeight = null;
     }
+
+    // Initialize uneditable text section with transpiled text
+    if (this.props) {
+      let processedText = this.transpileRawTextData(this.props.text);
+      document.querySelector(`[data-text-pid="${this._internalPID}"]`).innerHTML = processedText;
+    }
   }
 
   componentWillReceiveProps (nextProps) {
@@ -90,7 +96,7 @@ class DocumentTextSection extends React.Component {
       this.lastResultHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
     }
 
-    // Check for formatting button being pressed
+    // Check for formatting button being pressed in the banner
     // If the new formatting is coming in null, ignore it (we're resetting)
     if (!!nextProps.formatting && this.props.formatting !== nextProps.formatting) {
       this.replaceSelectedText(nextProps.formatting);
