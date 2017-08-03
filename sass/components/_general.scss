@@ -37,7 +37,8 @@
   @include transition(200ms)
 }
 .-custom-button-style:hover {
-  background-color: $light-blue;
+  background-color: #fff;
+  color: $dark-green;
 }
 
 .noselect {

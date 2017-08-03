@@ -62,7 +62,7 @@ class Banner extends React.Component {
     switch (this.props.viewMode) {
       case Mode.SHORT:
         // This is the height of the upper banner
-        return {transform: 'translateY(-75px)'};
+        return {transform: 'translateY(-70px)'};
       case Mode.FULL:
         return {transform: 'translateY(0)'};
       case Mode.HIDDEN:
@@ -102,8 +102,8 @@ class Banner extends React.Component {
               {/* Share */}
               <span
                 onClick={() => this.shareDocument()}
-                className="-banner-text -psuedo-link noselect">
-                  Share
+                className="-banner-text -banner-button -psuedo-link noselect">
+                  Share document
               </span>
 
               {/* Save */}
@@ -113,10 +113,10 @@ class Banner extends React.Component {
               </span>
 
               {/* Expand */}
-              <span
+              {/* <span
                 onClick={() => this.expandDocument()}
-                className={`icon-expand -icon-size -icon-spacing ${expandIconStyle}`}>
-              </span>
+                className={`icon-file-outline -icon-size -icon-spacing ${expandIconStyle}`}>
+              </span> */}
 
               {/* Notifications */}
               <ComponentWithPopup
@@ -129,7 +129,7 @@ class Banner extends React.Component {
                   </ul>
                 }
               >
-                <span className="icon-bell-alt -notifications -icon-size -icon-spacing"></span>
+                <span className="icon-bell-alt -no-notifications -icon-size -icon-spacing"></span>
               </ComponentWithPopup>
 
               {/* Help */}

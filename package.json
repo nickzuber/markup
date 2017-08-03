@@ -7,7 +7,7 @@
     "build:app": "./node_modules/.bin/gulp sass && webpack --config webpack.config.js && node server.js",
     "build:sass": "./node_modules/.bin/gulp sass",
     "sass": "./node_modules/.bin/gulp sass && ./node_modules/.bin/gulp watch",
-    "dev": "webpack --config webpack.dev.config.js && node server.dev.js",
+    "dev": "./node_modules/.bin/gulp sass && webpack --config webpack.dev.config.js && node server.dev.js",
     "watch": "./node_modules/.bin/gulp watch",
     "ci": "./node_modules/.bin/eslint --config .eslintrc src/**/*.js",
     "lint": "./node_modules/.bin/eslint --config .eslintrc src/**/*.js || true"

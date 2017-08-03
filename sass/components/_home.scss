@@ -15,6 +15,7 @@
     padding: 50px 0 10px;
     text-align: center;
     font-size: 4em;
+    letter-spacing: -2px;
     display: block;
     cursor: default;
   }
@@ -65,9 +66,30 @@
   width: 100%;
   height: 100%;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.30);
-  border-radius: 3px;
+  border-radius: 4px;
   overflow: hidden;
 }
+
+.-all-samples-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  margin: 50px auto;
+  text-align: center;
+
+  .-sample-container {
+    position: relative;
+    display: inline-block;
+    text-align: left;
+    width: 300px;
+    height: 150px;
+    margin: 10px 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.30);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+}
+
 
 .-homepage-features-block {
   display: block;

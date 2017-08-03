@@ -98,11 +98,46 @@ class HomeScreen extends React.Component {
           </div>
 
           {/* Sample posts section */}
-          <DocumentTextSection
-            uniqueId={'sample1'}
-            editable={false}
-            text={'this is a test'}
-          />
+          <div className="-all-samples-container">
+            {/* One sample */}
+            <div className="-sample-container">
+              <DocumentTextSection
+                uniqueId={'sample1'}
+                style={{
+                  width: '500px',
+                  padding: '20px 30px'
+                }}
+                editable={false}
+                text={defaultText}
+              />
+            </div>
+
+            {/* Two sample */}
+            <div className="-sample-container">
+              <DocumentTextSection
+                uniqueId={'sample2'}
+                style={{
+                  width: '500px',
+                  padding: '20px 30px'
+                }}
+                editable={false}
+                text={defaultText}
+              />
+            </div>
+
+            {/* Three sample */}
+            <div className="-sample-container">
+              <DocumentTextSection
+                uniqueId={'sample3'}
+                style={{
+                  width: '500px',
+                  padding: '20px 30px'
+                }}
+                editable={false}
+                text={defaultText}
+              />
+            </div>
+          </div>
         </div>
       </AppBody>
     );

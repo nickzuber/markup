@@ -74,6 +74,12 @@ class DocumentTextSection extends React.Component {
       this.lastResultHeight = null;
     }
 
+    // Set textarea height
+    if (document.querySelector(`textarea.document-text-section[data-document-pid="${this.props.uniqueId}"]`)) {
+      let newHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
+      document.querySelector(`textarea.document-text-section[data-document-pid="${this.props.uniqueId}"]`).style.height = `${newHeight}px`;
+    }
+
     // Initialize uneditable text section with transpiled text
     if (this.props) {
       let processedText = this.transpileRawTextData(this.props.text);
@@ -90,7 +96,7 @@ class DocumentTextSection extends React.Component {
 
     // Adjust height of textarea
     if (this.lastResultHeight !== document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight &&
-      document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`)) {
+        document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`)) {
       let newHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
       document.querySelector(`textarea.document-text-section[data-document-pid="${this.props.uniqueId}"]`).style.height = `${newHeight}px`;
       this.lastResultHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
@@ -280,12 +286,17 @@ class DocumentTextSection extends React.Component {
 
     // We append on new DOM node when props change
     return (
-      <div
-        style={this.props.style}
-        data-document-pid={this.props.uniqueId}
-        className={`document-text-section -uneditable ${expanded_class}`}
-      >
-        <div data-text-pid={this._internalPID} />
+      <div>
+        <div
+          style={this.props.style}
+          data-document-pid={this.props.uniqueId}
+          className={`document-text-section -uneditable ${expanded_class}`}
+        >
+          <div data-text-pid={this._internalPID} />
+        </div>
+        {/* <span
+          className={`icon-expand -icon-size -icon-spacing ${expandIconStyle}`}>
+        </span> */}
       </div>
     );
   }

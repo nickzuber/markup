@@ -50,6 +50,10 @@ class DocumentScreen extends React.Component {
       this.setState((oldState) => ({ defaultText: localSaveData }))
       this.props.documentActions.updateText(localSaveData)
     }
+    // If nothing found, load an empty page
+    else {
+      this.props.documentActions.updateText('')
+    }
   }
 
   componentDidMount () {
@@ -106,7 +110,7 @@ class DocumentScreen extends React.Component {
 
     // API call failed when we were waiting for it.
     if (this.props.save_post_status === 'request' && nextProps.save_post_status === 'failure') {
-      let message = 'Oops! Something went wrong when trying to save your document.'
+      let message = 'Uh oh! We weren\'t able to save your document.'
       return nextProps.documentActions.showAlert(message, AlertTypes.FAILURE)
     }
 

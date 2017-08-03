@@ -2,6 +2,7 @@
 
 const config = require('../config')
 const mongoose = require('mongoose')
+mongoose.Promise = require('bluebird')
 const shortid = require('shortid')
 const RateLimit = require('express-rate-limit')
 const Post = require('../models/post')
