@@ -66,6 +66,7 @@
       line-height: 75px;
       text-align: left;
       width: 290px;
+      @include transition(275ms);
     }
 
     .-banner-float-right {
@@ -76,6 +77,7 @@
       color: $light-green;
       line-height: 75px;
       width: 290px;
+      @include transition(275ms);
     }
 
     .-banner-text {

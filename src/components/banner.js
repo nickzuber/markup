@@ -36,8 +36,9 @@ class Banner extends React.Component {
 
   saveDocument () {
     if (!localStorage) {
+      // Throw proper error
       console.error('Unable to access local storage');
-      return 1;
+      return;
     }
     localStorage.setItem('markup-document-data', this.props.text);
     this.props.documentActions.saveDocument(Date.now());
@@ -58,7 +59,7 @@ class Banner extends React.Component {
     this.props.documentActions.expandDocument(!this.props.is_expanded);
   }
 
-  getPosition () {
+  getBannerPosition () {
     switch (this.props.viewMode) {
       case Mode.SHORT:
         // This is the height of the upper banner
@@ -68,6 +69,18 @@ class Banner extends React.Component {
       case Mode.HIDDEN:
       default:
         return {transform: 'translateY(-100%)'};
+    }
+  }
+
+  getDivPosition () {
+    switch (this.props.viewMode) {
+      case Mode.SHORT:
+        return {transform: 'translateY(52px)'};
+      case Mode.FULL:
+        return {transform: 'translateY(0)'};
+      case Mode.HIDDEN:
+      default:
+        return {};
     }
   }
 
@@ -84,10 +97,7 @@ class Banner extends React.Component {
     const expandIconStyle = this.props.is_expanded ? '-icon-activated' : ''
     
     return (
-      <div
-        className="-document-banner"
-        style={this.getPosition()}
-      >
+      <div className="-document-banner" style={this.getBannerPosition()}>
         <div className="-banner-upper">
           {/* center header */}
           <h1
@@ -97,7 +107,7 @@ class Banner extends React.Component {
             markup
           </h1>
           {/* Left */}
-          <div className="-banner-float-right">
+          <div className="-banner-float-right" style={this.getDivPosition()}>
             <div className="-banner-inner-side">
               {/* Share */}
               <span
@@ -137,7 +147,7 @@ class Banner extends React.Component {
             </div>
           </div>
           {/* Right */}
-          <div className="-banner-float-left">
+          <div className="-banner-float-left" style={this.getDivPosition()}>
             <div className="-banner-inner-side">
               {this.props.date_last_saved
                 ? <span className="icon-success" />

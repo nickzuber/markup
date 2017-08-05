@@ -14,6 +14,7 @@ textarea {
   padding: 180px 40px 350px;
   width: 50%;
   min-height: 100vh;
+  font-size: 16px;
   overflow-x: auto;
   border: 0;
   resize: none;
@@ -35,8 +36,8 @@ textarea {
     margin-bottom: 16px;
     font-weight: 400;
     font-style: normal;
-    font-size: 17px;
-    line-height: 27px;
+    font-size: 16px;
+    line-height: 24px;
     letter-spacing: -0.003em;
   }
 
@@ -81,7 +82,9 @@ textarea {
   }
 
   ul {
-
+    li {
+      margin: 15px 0;
+    }
   }
 
   blockquote {
@@ -120,18 +123,10 @@ textarea {
   }
 }
 
-.-uneditable {
-  // I really like it white
-  // background-color: #fafafa;
-
-  h1:first-of-type,
-  h2:first-of-type,
-  h3:first-of-type,
-  h4:first-of-type,
-  h5:first-of-type,
-  h6:first-of-type {
-    margin-top: 0 !important;
-  }
+// Select the first element in the output area. 
+// -uneditable > data-text-pid="..." > first_element
+.-uneditable > div > *:first-child {
+  margin-top: 0 !important;
 }
 
 .-expanded-document {
