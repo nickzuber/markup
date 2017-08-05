@@ -88,14 +88,25 @@ class Banner extends React.Component {
     const { date_last_saved } = this.props
     if (!date_last_saved) {
       return 'Work hasn\'t been saved yet'
-    }
-    
+    } 
     return getTimeMessage(Date.now() - date_last_saved)
   }
 
+  generateLastSavedIcon () {
+    const { date_last_saved } = this.props
+
+    if (date_last_saved) {
+      const timeInSeconds = (Date.now() - date_last_saved) / 1000
+      // Under 5 minutes
+      if (timeInSeconds < 60 * 5) {
+        return <span className="icon-success" />
+      }
+      return <span className="icon-warning" />
+    }
+    return <span className="icon-error" />
+  }
+
   render () {
-    const expandIconStyle = this.props.is_expanded ? '-icon-activated' : ''
-    
     return (
       <div className="-document-banner" style={this.getBannerPosition()}>
         <div className="-banner-upper">
@@ -149,9 +160,7 @@ class Banner extends React.Component {
           {/* Right */}
           <div className="-banner-float-left" style={this.getDivPosition()}>
             <div className="-banner-inner-side">
-              {this.props.date_last_saved
-                ? <span className="icon-success" />
-                : <span className="icon-error" />}
+              {this.generateLastSavedIcon()}
               <span className="-banner-text -last-saved-text noselect">{this.generateLastSavedMessage()}</span>
             </div>
           </div>

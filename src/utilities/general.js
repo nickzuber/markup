@@ -73,8 +73,8 @@ export function getTimeMessage (timeInMilliseconds) {
   const timeInHours = Math.round(timeInSeconds / (HOUR));
 
   // Multiple hours
-  if (timeInSeconds < 24 * HOUR) return `${timeInHours} hours`;
+  if (timeInSeconds < 24 * HOUR) return `Last saved ${timeInHours} hours ago`;
 
   // Over a day (shouldn't get past this point really too often)
-  return `over a day`;
+  return `Last saved over a day ago`;
 }

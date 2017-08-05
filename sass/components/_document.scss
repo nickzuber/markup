@@ -21,7 +21,9 @@ textarea {
   box-sizing: border-box;
   display: inline-block;
   outline: none;
-  @include transition(275ms);
+  // Expanding is weird with this,
+  // also doesn't seem to do much good anyways
+  // @include transition(275ms);
 
   h1, h2, h3, h4, h5, h6 {
     margin: 0;
@@ -136,11 +138,26 @@ textarea {
   width: 100%;
   padding-left: 100px;
   padding-right: 100px;
+}
+
+.-expand-icon {
+  position: 'absolute';
+  color: rgba(194, 194, 194, 0.89);
+  right: 40px;
+  margin: 10px;
   @include transition(150ms);
 }
 
+.-expand-icon:hover {
+  color: rgba(51, 51, 51, 0.8);
+}
+
+.-expand-icon:active {
+  color: rgba(51, 51, 51, 1);
+}
+
 .-icon-activated {
-  color: #ffffff !important;
+  color: rgba(51, 51, 51, 1) !important;
 }
 
 .document-alert {

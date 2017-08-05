@@ -110,6 +110,10 @@ class DocumentTextSection extends React.Component {
     }
   }
 
+  expandDocument () {
+    this.props.documentActions.expandDocument(!this.props.is_expanded);
+  }
+
   purgeChildren (DOMNode) {
     while (DOMNode.firstChild) {
       DOMNode.removeChild(DOMNode.firstChild);
@@ -280,23 +284,21 @@ class DocumentTextSection extends React.Component {
       );
     }
 
-    const expanded_class = this.props.is_expanded
-      ? '-expanded-document'
-      : ''
+    const expandDocumentClass = this.props.is_expanded ? '-expanded-document' : ''
+    const expandIconClass = this.props.is_expanded ? '-icon-activated' : ''
 
     // We append on new DOM node when props change
     return (
-      <div>
-        <div
-          style={this.props.style}
-          data-document-pid={this.props.uniqueId}
-          className={`document-text-section -uneditable ${expanded_class}`}
-        >
-          <div data-text-pid={this._internalPID} />
-        </div>
-        {/* <span
-          className={`icon-expand -icon-size -icon-spacing ${expandIconStyle}`}>
-        </span> */}
+      <div
+        style={this.props.style}
+        data-document-pid={this.props.uniqueId}
+        className={`document-text-section -uneditable ${expandDocumentClass}`}
+      >
+        <span 
+          className={`icon-expand -icon-size -icon-spacing -expand-icon ${expandIconClass}`} 
+          onClick={() => this.expandDocument()}
+        />
+        <div data-text-pid={this._internalPID} />
       </div>
     );
   }
