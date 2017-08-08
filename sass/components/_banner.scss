@@ -6,7 +6,7 @@
   position: relative;
   font-size: 20px !important;
   @extend .-psuedo-link;
-  @include transition(150ms);
+  @include transition(100ms);
 }
 .-icon-spacing {
   margin-left: 20px;
@@ -135,8 +135,15 @@
   .-icon-size:hover {
     color: #fff;
   }
+  .-icon-size:active {
+    color: rgba(189, 241, 207, 0.5);
+  }
+
   .-banner-button:hover {
     background: #fff;
+  }
+  .-banner-button:active {
+    background: rgba(189, 241, 207, 0.5);
   }
 }
 
@@ -153,8 +160,7 @@
     background-position-x: 50%;
     background-position-y: 50%;
     background-size: 50%;
-    background-repeat-x: no-repeat;
-    background-repeat-y: no-repeat;
+    background-repeat: no-repeat;
     background-attachment: initial;
     background-origin: initial;
     background-clip: initial;
@@ -205,6 +211,40 @@
   }
 
 }
+
+.tooltip-wrapper:hover .tooltip {
+  visibility: visible;
+  opacity: .7;
+}
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  font-family: BlinkMacSystemFont,-apple-system,sans-serif;
+  background: rgb(79, 79, 79);
+  color: #fff;
+  position: absolute;
+  border-radius: 5px;
+  font-weight: 600;
+  padding: 3px 8px 5px;
+  text-align: center;
+  font-size: 11px;
+  top: 25px;
+  left: -10px;
+  transition:visibility 150ms cubic-bezier(.2,0,.2,1), opacity 150ms cubic-bezier(.2,0,.2,1);
+}
+
+// .tooltip::after {
+//   content: "";
+//   position: absolute;
+//   bottom: 100%;
+//   left: 50%;
+//   margin-left: -5px;
+//   top: -9px; // A little jank to get rid of little space between arrow and tooltip
+//   border-width: 5px;
+//   border-style: solid;
+//   border-color: transparent transparent rgb(79, 79, 79) transparent;
+// }
 
 @media all and (max-width: 1000px) {
   .-banner-upper, .-banner-lower {

@@ -10,6 +10,9 @@
   height: 800px;
   height: 100vh;
   width: 100%;
+  padding-bottom: 50px;
+  overflow: auto;
+  min-width: 1000px;
 
   .-banner-title {
     padding: 50px 0 10px;
@@ -109,5 +112,106 @@
 
   img:hover {
     opacity: .2;
+  }
+}
+
+.-landing-header-bottom-curve {
+  position: absolute;
+  bottom: 0;
+  background: #fff;
+  width: 100vw;
+  min-width: 1000px;
+  z-index: 9999;
+
+  svg {
+    height: 100px;
+    width: 100%;
+  }
+}
+
+// All sections with samples container
+.section-with-side-sample-container {
+  position: relative;
+  width: 100vw;
+  background: #fff;
+  height: 800px;
+}
+
+// Left sample
+.section-with-left-side-sample {
+  position: relative;
+  height: 700px;
+  background: #fff;
+  width: 100vw;
+  min-width: 1000px;
+  overflow: hidden;
+
+  .-left-side {
+    position: absolute;
+    left: 0;
+    height: 100%;
+
+    img {
+      position: absolute;
+      margin-top: 410px;
+      top: -50%;
+      left: -500px;
+      width: 1000px;
+      border-radius: 10px;
+      box-shadow: 0 5px 25px rgba(0,0,0,.4);
+    }
+  }
+  .-right-side {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+  }
+}
+
+// Right sample
+.section-with-right-side-sample {
+  position: relative;
+  background: $green;
+  height: 700px;
+  width: 100vw;
+  min-width: 1000px;
+  overflow: hidden;
+
+  .-left-side {
+    position: absolute;
+    left: 0;
+    width: 50%;
+    height: 100%;
+  }
+  .-right-side {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+
+    img {
+      position: absolute;
+      margin-top: 410px;
+      top: -50%;
+      right: -500px;
+      width: 1000px;
+      border-radius: 10px;
+      box-shadow: 0 5px 25px rgba(0,0,0,.4);
+    }
+  }
+}
+
+.-landing-header-bottom-curve-inverted {
+  position: absolute;
+  bottom: 0;
+  background: $green;
+  width: 100vw;
+  min-width: 1000px;
+  z-index: 9999;
+
+  svg {
+    height: 100px;
+    width: 100%;
   }
 }

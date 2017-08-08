@@ -55,10 +55,6 @@ class Banner extends React.Component {
     return false;
   }
 
-  expandDocument () {
-    this.props.documentActions.expandDocument(!this.props.is_expanded);
-  }
-
   getBannerPosition () {
     switch (this.props.viewMode) {
       case Mode.SHORT:
@@ -130,14 +126,8 @@ class Banner extends React.Component {
               {/* Save */}
               <span
                 onClick={() => this.saveDocument()}
-                className={'icon-cloud-alt -icon-size -icon-spacing'}>
-              </span>
-
-              {/* Expand */}
-              {/* <span
-                onClick={() => this.expandDocument()}
-                className={`icon-file-outline -icon-size -icon-spacing ${expandIconStyle}`}>
-              </span> */}
+                className={'icon-cloud-alt -icon-size -icon-spacing tooltip-wrapper'}
+                title="Save document" />
 
               {/* Notifications */}
               <ComponentWithPopup
@@ -150,11 +140,15 @@ class Banner extends React.Component {
                   </ul>
                 }
               >
-                <span className="icon-bell-alt -no-notifications -icon-size -icon-spacing"></span>
+                <span 
+                  className="icon-bell-alt -no-notifications -icon-size -icon-spacing tooltip-wrapper" 
+                  title="Notifications" />
               </ComponentWithPopup>
 
               {/* Help */}
-              <span className="icon-help -icon-size -icon-spacing"></span>
+              <span 
+                className="icon-help -icon-size -icon-spacing tooltip-wrapper"
+                title="Help" />
             </div>
           </div>
           {/* Right */}

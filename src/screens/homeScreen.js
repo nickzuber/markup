@@ -97,52 +97,61 @@ class HomeScreen extends React.Component {
             </div>
           </div>
 
-          {/* Sample posts section */}
-          <div className="-all-samples-container">
-            {/* One sample */}
-            <div className="-sample-container">
-              <DocumentTextSection
-                uniqueId={'sample1'}
-                style={{
-                  width: '500px',
-                  padding: '20px 30px'
-                }}
-                editable={false}
-                text={defaultText}
-              />
-            </div>
+          {/* SVG footer */}
+          <div className="-landing-header-bottom-curve">
+            <CurveComponent />
+          </div>
+        </div>
 
-            {/* Two sample */}
-            <div className="-sample-container">
-              <DocumentTextSection
-                uniqueId={'sample2'}
-                style={{
-                  width: '500px',
-                  padding: '20px 30px'
-                }}
-                editable={false}
-                text={defaultText}
-              />
+        {/* Left Sample Container */}
+        <div className="section-with-side-sample-container">
+          {/* Left Sample */}
+          <div className="section-with-left-side-sample">
+            <div className="-left-side">
+              <img src="/img/samples/sample.png" />
             </div>
+            <div className="-right-side">
+              right
+            </div>
+          </div>
 
-            {/* Three sample */}
-            <div className="-sample-container">
-              <DocumentTextSection
-                uniqueId={'sample3'}
-                style={{
-                  width: '500px',
-                  padding: '20px 30px'
-                }}
-                editable={false}
-                text={defaultText}
-              />
+          {/* SVG footer */}
+          <div className="-landing-header-bottom-curve-inverted">
+            <CurveComponent color='#fff' />
+          </div>
+        </div>
+
+        {/* Right Sample Container */}
+        <div className="section-with-side-sample-container">
+
+          {/* Right Sample */}
+          <div className="section-with-right-side-sample">
+            <div className="-left-side">
+              left
             </div>
+            <div className="-right-side">
+              <img src="/img/samples/sample.png" />
+            </div>
+          </div>
+
+          {/* SVG footer */}
+          <div className="-landing-header-bottom-curve">
+            <CurveComponent />
           </div>
         </div>
       </AppBody>
     );
   }
 };
+
+function CurveComponent (props) {
+  const color = props.color || '#02b875'
+  return (
+    <svg preserveAspectRatio="none" width="54" height="14" viewBox="0 0 54 14" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path fill={color} d="M 27 10C 21 12 14 14 0 14L 0 0L 54 0L 54 3C 40 3 33 8 27 10Z"></path>
+    </svg>
+  )
+}
 
 const actions = (dispatch) => ({
   documentActions: bindActionCreators(DocumentActions, dispatch),
@@ -154,3 +163,45 @@ const selector = (state) => ({
 });
 
 export default connect(selector, actions)(HomeScreen);
+
+// {/* Sample posts section */}
+// <div className="-all-samples-container">
+//   {/* One sample */}
+//   <div className="-sample-container">
+//     <DocumentTextSection
+//       uniqueId={'sample1'}
+//       style={{
+//         width: '500px',
+//         padding: '20px 30px'
+//       }}
+//       editable={false}
+//       text={defaultText}
+//     />
+//   </div>
+
+//   {/* Two sample */}
+//   <div className="-sample-container">
+//     <DocumentTextSection
+//       uniqueId={'sample2'}
+//       style={{
+//         width: '500px',
+//         padding: '20px 30px'
+//       }}
+//       editable={false}
+//       text={defaultText}
+//     />
+//   </div>
+
+//   {/* Three sample */}
+//   <div className="-sample-container">
+//     <DocumentTextSection
+//       uniqueId={'sample3'}
+//       style={{
+//         width: '500px',
+//         padding: '20px 30px'
+//       }}
+//       editable={false}
+//       text={defaultText}
+//     />
+//   </div>
+// </div>
