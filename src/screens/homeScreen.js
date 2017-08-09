@@ -17,7 +17,9 @@ const defaultText = `markup
 
 > Create & share TeX snippets with rich math typesetting and markdown support.
 
-Supports _math_ **typesetting** like $T(n) = \\Theta (n^2)$ and markdown ~~stuff~~ features.`;
+Supports _math_ **typesetting** like $T(n) = \\Theta (n^2)$ and markdown ~~stuff~~ features.
+
+$f(x) = \\int_{-\\infty}^\\infty\\hat f(\\xi)\\,e^{2 \\pi i \\xi x}\\,d\\xi$`;
 
 class HomeScreen extends React.Component {
 
@@ -111,7 +113,9 @@ class HomeScreen extends React.Component {
               <img src="/img/samples/sample.png" />
             </div>
             <div className="-right-side">
-              right
+              <h1>Powered by KaTeX, the Fastest Math Typesetting Library on the Web</h1>
+              <p>KaTeX renders its math synchronously and doesn’t need to reflow the page, and the
+                layout is based on Donald Knuth’s TeX, the gold standard for math typesetting.</p>
             </div>
           </div>
 
@@ -127,7 +131,9 @@ class HomeScreen extends React.Component {
           {/* Right Sample */}
           <div className="section-with-right-side-sample">
             <div className="-left-side">
-              left
+              <h1>Powered by KaTeX, the Fastest Math Typesetting Library on the Web</h1>
+              <p>KaTeX renders its math synchronously and doesn’t need to reflow the page, and the
+                layout is based on Donald Knuth’s TeX, the gold standard for math typesetting.</p>
             </div>
             <div className="-right-side">
               <img src="/img/samples/sample.png" />

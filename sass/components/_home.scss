@@ -135,6 +135,17 @@
   width: 100vw;
   background: #fff;
   height: 800px;
+
+  h1 {
+    padding: 60px;
+    padding-bottom: 25px;
+    font-weight: 300;
+  }
+  p {
+    padding: 0 60px;
+    line-height: 30px;
+    font-weight: 300;
+  }
 }
 
 // Left sample
@@ -183,6 +194,7 @@
     left: 0;
     width: 50%;
     height: 100%;
+    color: #fff;
   }
   .-right-side {
     position: absolute;
