@@ -1,5 +1,7 @@
 'use strict'
 
+process.env.NODE_ENV = null
+
 // ES5 here so we don't have to transpile this
 const config = require('./config')
 const routes = require('./routes')
@@ -58,4 +60,5 @@ routes(app)
 
 // Start server
 server.listen(config.app.server.port)
+console.log(`Running server in ${config.app.env} mode`)
 console.log(`http server listening on port ${config.app.server.port}...`)
