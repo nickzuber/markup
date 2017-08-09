@@ -9,6 +9,7 @@ import thunk from 'redux-thunk'
 import * as reducers from '../reducers'
 import createLogger from 'redux-logger'
 import { callAPI } from '../middleware/robin-redux-api-middleware'
+import Config from '../../config'
 
 const logger = createLogger({
   duration: true,
@@ -22,7 +23,7 @@ const store = createStore(
   applyMiddleware(
     thunk,
     callAPI,
-    logger
+    (Config.app.env === Config.app.environments.DEV) && logger
   )
 )
 
