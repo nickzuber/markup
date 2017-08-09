@@ -1,7 +1,5 @@
 'use strict'
 
-process.env.NODE_ENV = null
-
 // ES5 here so we don't have to transpile this
 const config = require('./config')
 const routes = require('./routes')

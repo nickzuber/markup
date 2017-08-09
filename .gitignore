@@ -7,3 +7,6 @@ public/css/main.bundle.css
 
 # NPM5 is so broken man
 package-lock.json
+
+# Env vars suck
+env.js

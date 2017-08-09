@@ -1,9 +1,8 @@
 'use strict';
 
-var env_server = {};
+const DEV_FLAG = require('../env').DEV_FLAG
 
-// Set flag on when in development mode
-const DEV_FLAG = !process.env.NODE_ENV
+var env_server = {};
 
 const Environments = {
   'DEV': 'development',
@@ -35,5 +34,4 @@ switch (exports.env) {
     throw new Error('Attempted to set an unknown evnironment.')
 }
 
-exports.environments - Environments
 exports.server = env_server;
