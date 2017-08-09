@@ -4,3 +4,6 @@ node_modules
 npm-debug.log
 public/js/app.bundle.js
 public/css/main.bundle.css
+
+# NPM5 is so broken man
+package-lock.json
