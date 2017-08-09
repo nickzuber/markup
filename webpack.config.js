@@ -22,9 +22,10 @@ module.exports = {
       }
     }]
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    })
-  ]
+// I don't have enough RAM on my ubuntu server to run this lmfao
+//  plugins: [
+//    new webpack.optimize.UglifyJsPlugin({
+//      compress: { warnings: false }
+//    })
+//  ]
 };

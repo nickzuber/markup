@@ -4,6 +4,7 @@
   "description": "Markdown editing platform that supports MathJax and Kramdown markups.",
   "main": "server.js",
   "scripts": {
+    "restart": "./node_modules/.bin/gulp sass && webpack --config webpack.config.js && NODE_ENV=production pm2 restart server.js",
     "run:prod": "./node_modules/.bin/gulp sass && webpack --config webpack.config.js && pm2 start server.js",
     "build:prod": "./node_modules/.bin/gulp sass && webpack --config webpack.config.js",
     "build:app": "./node_modules/.bin/gulp sass && webpack --config webpack.config.js && node server.js",
