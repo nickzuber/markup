@@ -158,14 +158,10 @@ class HomeScreen extends React.Component {
   }
 };
 
-const CurveComponent = props => {
-  const color = props.color || '#02b875'
-  return (
+const CurveComponent = (color, ...props) =>
     <svg preserveAspectRatio="none" width="54" height="14" viewBox="0 0 54 14" version="1.1" xmlns="http://www.w3.org/2000/svg">
-      <path fill={color} d="M 27 10C 21 12 14 14 0 14L 0 0L 54 0L 54 3C 40 3 33 8 27 10Z"></path>
+      <path fill={color || '#02b875'} d="M 27 10C 21 12 14 14 0 14L 0 0L 54 0L 54 3C 40 3 33 8 27 10Z"></path>
     </svg>
-  )
-}
 
 const actions = (dispatch) => ({
   documentActions: bindActionCreators(DocumentActions, dispatch),
