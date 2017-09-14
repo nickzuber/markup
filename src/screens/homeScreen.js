@@ -150,7 +150,7 @@ class HomeScreen extends React.Component {
         <div className="homepage-footer">
           <p>Created by <a href="https://nickzuber.com/">Nick Zuber</a> using <a href="https://facebook.github.io/react/">React</a> and <a href="http://redux.js.org/">Redux</a></p>
           <a href="https://github.com/markup-app/markup">Github</a>&nbsp;∙&nbsp;
-          <a href="https://github.com/markup-app/markup/issues">Report a bug</a>&nbsp;∙&nbsp;
+          <a href="https://github.com/markup-app/markup/issues">Report Issue</a>&nbsp;∙&nbsp;
           <a href="https://twitter.com/nick_zuber">Contact</a>
         </div>
       </AppBody>
