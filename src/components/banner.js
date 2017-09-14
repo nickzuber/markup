@@ -152,9 +152,23 @@ class Banner extends React.Component {
               </ComponentWithPopup>
 
               {/* Help */}
-              <span 
-                className="icon-help -icon-size -icon-spacing tooltip-wrapper"
-                title="Help" />
+              <ComponentWithPopup
+                forceHide={!this.props.showPopups}
+                message={
+                  <ul className="-ul-message">
+                    <h2>How things work.</h2>
+                    <li onClick={() => this.shareDocument()}><span className={'icon-directions-arrow'} />Share document</li>
+                    <li onClick={() => this.saveDocument()}><span className={'icon-cloud-alt'} /> Local save document</li>
+                    <li onClick={() => {}}><span className={'icon-bell-alt'} /> Notifications and updates</li>
+                    <li><span className={'icon-help'} /> Help and Instructions</li>
+                    <li onClick={() => {}}><span className={'icon-expand'} /> Expand output</li>
+                  </ul>
+                }
+              >
+                <span 
+                  className="icon-help -icon-size -icon-spacing tooltip-wrapper"
+                  title="Help" />
+              </ComponentWithPopup>
             </div>
           </div>
           {/* Right */}
