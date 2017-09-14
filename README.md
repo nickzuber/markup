@@ -5,13 +5,16 @@
 Create & share TeX snippets with rich math typesetting and markdown support.
 
 [![Build Status](https://travis-ci.org/markup-app/markup.svg?branch=master)]()
-[![Deps Status](https://david-dm.org/nickzuber/markup/status.svg)]()
 [![License](https://img.shields.io/badge/license-MIT%20Licence-blue.svg)]()
 
 Overview
 --------
 
-Blah.
+Markup is a web app that lets people easily create and share rich TeX snippets. You can write snippets containing markdown and/or math typesettting - similar to the math typesetting you find in LaTeX distributions!
+
+Write whatever you want, and hit the share button to send what you've created to your friends! 
+
+You can also save your progress and snippets locally if you want to come back to them later. We use your browser's local storage here, so keep in mind that your locally saved work is connected to your browser!
 
 Contributing
 -----
