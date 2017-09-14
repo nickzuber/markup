@@ -102,6 +102,12 @@ class Banner extends React.Component {
     return <span className="icon-error" />
   }
 
+  openNewWindow (url) {
+    if (!window) return
+    const $win = window.open(url, '_blank')
+    $win.focus()
+  }
+
   render () {
     return (
       <div className="-document-banner" style={this.getBannerPosition()}>
@@ -135,8 +141,8 @@ class Banner extends React.Component {
                 message={
                   <ul className="-ul-message">
                     <h2>There have been some updates.</h2>
-                    <li>Check out the new updates</li>
-                    <li>See our changelog</li>
+                    <li onClick={() => this.openNewWindow('https://github.com/markup-app/markup/releases')}>Check out the new updates</li>
+                    <li onClick={() => this.openNewWindow('https://github.com/markup-app/markup/releases')}>See our changelog</li>
                   </ul>
                 }
               >
