@@ -44,5 +44,5 @@ routes(app)
 
 // Start server
 server.listen(config.app.server.port)
-console.log(`Running server in ${config.app.env} mode`)
-console.log(`http server listening on port ${config.app.server.port}...`)
+console.log(`✓ Running server in ${config.app.env} mode`)
+console.log(`✓ http server listening on port ${config.app.server.port}...`)

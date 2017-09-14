@@ -10,10 +10,10 @@ mongoose.connect('mongodb://localhost/markup', {
 
 const connection = mongoose.connection;
 connection.on('error', console.error.bind(
-	  console, 'mongodb database connection error:'
+	  console, '✖ mongodb database connection error:'
 ))
 
 connection.once('open', function() {
-    console.log('mongodb database successfully connected')
+    console.log('✓ mongodb database successfully connected')
 })
 

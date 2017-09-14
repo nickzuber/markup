@@ -9,7 +9,7 @@ const Post = require('../models/post')
 
 const apiLimiter = new RateLimit({
   windowMs: 15 * 60 * 1000,   // 15 minutes
-  max: 3,                   // limit each IP to 100 requests per windowMs
+  max: 10,                    // limit each IP to 100 requests per windowMs
   delayAfter: 10,             // begin slowing down responses after the 10th request
   delayMs: 3 * 1000,          // slow down subsequent responses by 3 seconds per request
   message: 'Too many accounts created from this IP, please try again in 15 minutes'

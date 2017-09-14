@@ -131,9 +131,11 @@ class HomeScreen extends React.Component {
           {/* Right Sample */}
           <div className="section-with-right-side-sample">
             <div className="-left-side">
-              <h1>Powered by KaTeX, the Fastest Math Typesetting Library on the Web</h1>
-              <p>KaTeX renders its math synchronously and doesn’t need to reflow the page, and the
-                layout is based on Donald Knuth’s TeX, the gold standard for math typesetting.</p>
+              <h1>Combine Markdown with KaTeX to Produce Rich Documents</h1>
+              <p>Not only do we parse and compile KaTeX in real time, we also support markdown! 
+                You can freely combine the two formats seemlessly together and have them compile
+                in real time as you type.
+              </p>
             </div>
             <div className="-right-side">
               <img src="/img/samples/sample.png" />
@@ -145,12 +147,18 @@ class HomeScreen extends React.Component {
             <CurveComponent />
           </div>
         </div>
+        <div className="homepage-footer">
+          <p>Created by <a href="https://nickzuber.com/">Nick Zuber</a> using <a href="https://facebook.github.io/react/">React</a> and <a href="http://redux.js.org/">Redux</a></p>
+          <a href="https://github.com/markup-app/markup">Github</a>&nbsp;∙&nbsp;
+          <a href="https://github.com/markup-app/markup/issues">Report a bug</a>&nbsp;∙&nbsp;
+          <a href="https://twitter.com/nick_zuber">Contact</a>
+        </div>
       </AppBody>
     );
   }
 };
 
-function CurveComponent (props) {
+const CurveComponent = props => {
   const color = props.color || '#02b875'
   return (
     <svg preserveAspectRatio="none" width="54" height="14" viewBox="0 0 54 14" version="1.1" xmlns="http://www.w3.org/2000/svg">
