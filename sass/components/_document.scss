@@ -25,6 +25,14 @@ textarea {
   // also doesn't seem to do much good anyways
   // @include transition(275ms);
 
+  @include media-query($on-mobile) {
+    width: 100%;
+
+    .-uneditable {
+      display: none;
+    }
+  }
+
   h1, h2, h3, h4, h5, h6 {
     margin: 0;
     margin-top: 48px;
@@ -129,6 +137,12 @@ textarea {
 // -uneditable > data-text-pid="..." > first_element
 .-uneditable > div > *:first-child {
   margin-top: 0 !important;
+}
+
+.-uneditable {
+  @include media-query($on-mobile) {
+    display: none; 
+  }
 }
 
 .-expanded-document {

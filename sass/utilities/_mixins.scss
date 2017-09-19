@@ -1,4 +1,6 @@
 
+$on-mobile: 850px;
+
 @mixin transition ($ms) {
   -webkit-transition: all $ms cubic-bezier(.2,0,.2,1);
      -moz-transition: all $ms cubic-bezier(.2,0,.2,1);
@@ -24,4 +26,10 @@
 
   /* W3C Markup */ 
   background-image: linear-gradient(to top right, #6D54BF 0%, #FF6BEB 100%);
+}
+
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
 }

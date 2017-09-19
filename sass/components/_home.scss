@@ -14,14 +14,24 @@
   overflow: hidden;
   min-width: 1000px;
 
+  @include media-query($on-mobile) {
+    width: 100%;
+    min-width: 100%;
+  }
+
   .-banner-title {
     padding: 50px 0 10px;
     text-align: center;
     font-size: 4em;
     letter-spacing: -2px;
+    color: $white;
     display: block;
     cursor: default;
+    font-family: 'Poppins', sans-serif;
+    color: $white;
+    margin: 0 auto;
   }
+
   .-banner-sub-title {
     font-family: 'Open Sans', sans-serif;
     color: $white;
@@ -36,6 +46,10 @@
     line-height: 20px;
     display: block;
     cursor: default;
+
+    @include media-query($on-mobile) {
+      width: 100%;
+    }
 
     span {
       vertical-align: initial;
@@ -56,6 +70,10 @@
   position: relative;
   margin: 0 auto;
 
+  @include media-query($on-mobile) {
+    width: 100%;
+  }
+
   .document-text-section {
     padding: 60px 40px 20px;
     min-height: 400px;
@@ -71,6 +89,11 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.30);
   border-radius: 4px;
   overflow: hidden;
+
+  @include media-query($on-mobile) {
+    width: 80%;
+    margin: 0 auto;
+  }
 }
 
 .-all-samples-container {
@@ -136,6 +159,10 @@
   background: #fff;
   height: 800px;
 
+  @include media-query($on-mobile) {
+    width: 100%;
+  }
+
   h1 {
     padding: 60px;
     padding-bottom: 25px;
@@ -148,6 +175,15 @@
     font-size: 24px;
     font-weight: 300;
   }
+
+  @include media-query($on-mobile) {
+    h1, p {
+      padding: 30px;
+    }
+    p {
+      padding-top: 0px;
+    }
+  }
 }
 
 // Left sample
@@ -158,6 +194,10 @@
   width: 100vw;
   min-width: 1000px;
   overflow: hidden;
+
+  @include media-query($on-mobile) {
+    min-width: 100%;
+  }
 
   .-left-side {
     position: absolute;
@@ -172,6 +212,10 @@
       width: 1000px;
       border-radius: 10px;
       box-shadow: 0 5px 25px rgba(0,0,0,.4);
+
+      @include media-query($on-mobile) {
+        display: none;
+      }
     }
   }
   .-right-side {
@@ -179,6 +223,10 @@
     right: 0;
     width: 50%;
     height: 100%;
+
+    @include media-query($on-mobile) {
+      width: 100%;
+    }
   }
 }
 
@@ -191,12 +239,20 @@
   min-width: 1000px;
   overflow: hidden;
 
+  @include media-query($on-mobile) {
+    min-width: 100%;
+  }
+
   .-left-side {
     position: absolute;
     left: 0;
     width: 50%;
     height: 100%;
     color: #fff;
+
+    @include media-query($on-mobile) {
+      width: 100%;
+    }
   }
   .-right-side {
     position: absolute;
@@ -212,6 +268,10 @@
       width: 1000px;
       border-radius: 10px;
       box-shadow: 0 5px 25px rgba(0,0,0,.4);
+
+      @include media-query($on-mobile) {
+        display: none;
+      }
     }
   }
 }

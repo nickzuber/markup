@@ -12,14 +12,23 @@
   margin-left: 20px;
 }
 
-.-banner-title {
-  font-family: 'Poppins', sans-serif;
-  color: $white;
-  font-size: 50px;
-  letter-spacing: -1px;
-  margin: 0 auto;
-  cursor: pointer;
-  display: inline-block;
+.-document-banner {
+  .-banner-title {
+    font-family: 'Poppins', sans-serif;
+    color: $white;
+    font-size: 50px;
+    letter-spacing: -1px;
+    margin: 0 auto;
+    cursor: pointer;
+    display: inline-block;
+
+    @include media-query($on-mobile) {
+      font-size: 35px;
+      float: left;
+      margin: 5px 20px;
+      margin-right: 0;
+    }
+  }
 }
 
 .-notifications:after {
@@ -47,6 +56,11 @@
   box-shadow: 0 2px 2px -2px rgba(0, 0, 0, .15);
   @include transition(275ms);
 
+  @include media-query($on-mobile) {
+    width: 100%;
+    min-width: 100%;
+  }
+
   ul {
     font-family: 'Helvetica Neue', sans-serif;
     list-style-type: none;
@@ -71,6 +85,11 @@
       text-align: left;
       width: 290px;
       @include transition(275ms);
+
+      @include media-query($on-mobile) {
+        // This gets replaced visually with the title
+        display: none;
+      }
     }
 
     .-banner-float-right {
@@ -82,6 +101,13 @@
       line-height: 75px;
       width: 290px;
       @include transition(275ms);
+     
+      @include media-query($on-mobile) {
+        width: 40%;
+        height: 65px;
+        padding-right: 15px;
+        line-height: 70px;
+      }
     }
 
     .-banner-text {
@@ -90,6 +116,10 @@
       font-weight: 500;
       white-space:nowrap;
       padding: 5px;
+
+      @include media-query($on-mobile) {
+        display: none;
+      }
     }
     .-banner-button {
       color: $dark-green;
