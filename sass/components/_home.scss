@@ -12,7 +12,7 @@
   width: 100%;
   padding-bottom: 50px;
   overflow: hidden;
-  min-width: 1000px;
+  min-width: 800px;
 
   @include media-query($on-mobile) {
     width: 100%;
@@ -143,8 +143,12 @@
   bottom: 0;
   background: #fff;
   width: 100vw;
-  min-width: 1000px;
+  min-width: 800px;
   z-index: 9999;
+
+  @include media-query($on-mobile) {
+    min-width: 100%;
+  }
 
   svg {
     height: 100px;
@@ -192,7 +196,7 @@
   height: 700px;
   background: #fff;
   width: 100vw;
-  min-width: 1000px;
+  min-width: 800px;
   overflow: hidden;
 
   @include media-query($on-mobile) {
@@ -236,7 +240,7 @@
   background: $green;
   height: 700px;
   width: 100vw;
-  min-width: 1000px;
+  min-width: 800px;
   overflow: hidden;
 
   @include media-query($on-mobile) {
@@ -281,8 +285,12 @@
   bottom: 0;
   background: $green;
   width: 100vw;
-  min-width: 1000px;
+  min-width: 800px;
   z-index: 9999;
+
+  @include media-query($on-mobile) {
+    min-width: 100%;
+  }
 
   svg {
     height: 100px;
