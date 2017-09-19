@@ -257,3 +257,14 @@
     margin-right: auto;
   }
 }
+
+.-disabled {
+  background: #bdf1cf !important;
+  opacity: .5 !important;
+  cursor: default !important;
+}
+.-disabled:hover {
+  background: #bdf1cf !important;
+  opacity: .5 !important;
+  cursor: default !important;
+}

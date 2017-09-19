@@ -109,6 +109,7 @@ class Banner extends React.Component {
   }
 
   render () {
+    console.log(this.props.save_post_status)
     return (
       <div className="-document-banner" style={this.getBannerPosition()}>
         <div className="-banner-upper">
@@ -123,11 +124,20 @@ class Banner extends React.Component {
           <div className="-banner-float-right" style={this.getDivPosition()}>
             <div className="-banner-inner-side">
               {/* Share */}
-              <span
-                onClick={() => this.shareDocument()}
-                className="-banner-text -banner-button -psuedo-link noselect">
-                  Share document
-              </span>
+              {/* TODO: conditional rendering like this is janky, make a function */}
+              {this.props.save_post_status !== 'request' &&
+                <span
+                  onClick={() => this.shareDocument()}
+                  className="-banner-text -banner-button -psuedo-link noselect">
+                    Share document
+                </span>
+              }
+              {this.props.save_post_status === 'request' &&
+                <span
+                  className="-banner-text -banner-button -psuedo-link -disabled noselect">
+                    Share document
+                </span>
+              }
 
               {/* Save */}
               <span
@@ -210,6 +220,7 @@ const selector = (state) => ({
   text: state.document.text,
   date_last_saved: state.document.date_last_saved,
   is_expanded: state.document.is_expanded,
+  save_post_status: state.document.save_post_status,
 });
 
 export default connect(selector, actions)(Banner);
