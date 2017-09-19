@@ -109,7 +109,6 @@ class Banner extends React.Component {
   }
 
   render () {
-    console.log(this.props.save_post_status)
     return (
       <div className="-document-banner" style={this.getBannerPosition()}>
         <div className="-banner-upper">
