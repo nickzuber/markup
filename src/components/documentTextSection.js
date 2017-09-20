@@ -16,7 +16,6 @@ const STATIC_PID = '_STATIC_PID'
 function resizeTextareaOnInput (_event) {
   this.style.height = 'auto'
   this.style.height = `${this.scrollHeight}px`
-  console.log('RESIZE')
 }
 
 // @TODO move this to constants file
