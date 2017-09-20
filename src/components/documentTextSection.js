@@ -81,9 +81,6 @@ class DocumentTextSection extends React.Component {
 
     const textareaElement = document.querySelector(`textarea.document-text-section[data-document-pid="${this.props.uniqueId}"]`)
     if (textareaElement) {
-      // Set textarea height
-      // let newHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
-      // textareaElement.style.height = `${newHeight}px`;
       // Monkey patch textarea autoheight
       textareaElement.addEventListener('input', resizeTextareaOnInput, false)
       textareaElement.style.height = `${textareaElement.scrollHeight}px`
@@ -110,14 +107,6 @@ class DocumentTextSection extends React.Component {
       let processedText = this.transpileRawTextData(nextProps.text);
       document.querySelector(`[data-text-pid="${this._internalPID}"]`).innerHTML = processedText;
     }
-
-    // Adjust height of textarea
-    // if (this.lastResultHeight !== document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight &&
-    //     document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`)) {
-    //   let newHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
-    //   document.querySelector(`textarea.document-text-section[data-document-pid="${this.props.uniqueId}"]`).style.height = `${newHeight}px`;
-    //   this.lastResultHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
-    // }
 
     // Check for formatting button being pressed in the banner
     // If the new formatting is coming in null, ignore it (we're resetting)
