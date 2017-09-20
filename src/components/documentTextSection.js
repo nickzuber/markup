@@ -13,6 +13,12 @@ const THROTTLE = 0;
 
 const STATIC_PID = '_STATIC_PID'
 
+function resizeTextareaOnInput (_event) {
+  this.style.height = 'auto'
+  this.style.height = `${this.scrollHeight}px`
+  console.log('RESIZE')
+}
+
 // @TODO move this to constants file
 export const Formats = {
   BOLD: 'BOLD',
@@ -74,16 +80,27 @@ class DocumentTextSection extends React.Component {
       this.lastResultHeight = null;
     }
 
-    // Set textarea height
-    if (document.querySelector(`textarea.document-text-section[data-document-pid="${this.props.uniqueId}"]`)) {
-      let newHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
-      document.querySelector(`textarea.document-text-section[data-document-pid="${this.props.uniqueId}"]`).style.height = `${newHeight}px`;
+    const textareaElement = document.querySelector(`textarea.document-text-section[data-document-pid="${this.props.uniqueId}"]`)
+    if (textareaElement) {
+      // Set textarea height
+      // let newHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
+      // textareaElement.style.height = `${newHeight}px`;
+      // Monkey patch textarea autoheight
+      textareaElement.addEventListener('input', resizeTextareaOnInput, false)
     }
 
     // Initialize uneditable text section with transpiled text
     if (this.props) {
       let processedText = this.transpileRawTextData(this.props.text);
       document.querySelector(`[data-text-pid="${this._internalPID}"]`).innerHTML = processedText;
+    }
+  }
+
+  componentWillUnmount () {
+    const textareaElement = document.querySelector(`textarea.document-text-section[data-document-pid="${this.props.uniqueId}"]`)
+    if (textareaElement) {
+      // Remove event listener
+      textareaElement.removeEventListener('input', resizeTextareaOnInput, false)
     }
   }
 
@@ -95,12 +112,12 @@ class DocumentTextSection extends React.Component {
     }
 
     // Adjust height of textarea
-    if (this.lastResultHeight !== document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight &&
-        document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`)) {
-      let newHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
-      document.querySelector(`textarea.document-text-section[data-document-pid="${this.props.uniqueId}"]`).style.height = `${newHeight}px`;
-      this.lastResultHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
-    }
+    // if (this.lastResultHeight !== document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight &&
+    //     document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`)) {
+    //   let newHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
+    //   document.querySelector(`textarea.document-text-section[data-document-pid="${this.props.uniqueId}"]`).style.height = `${newHeight}px`;
+    //   this.lastResultHeight = document.querySelector(`.-uneditable[data-document-pid="${this.props.uniqueId}"]`).offsetHeight;
+    // }
 
     // Check for formatting button being pressed in the banner
     // If the new formatting is coming in null, ignore it (we're resetting)

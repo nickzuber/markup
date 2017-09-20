@@ -5,13 +5,15 @@
 textarea {
   font-family: 'Inconsolata', monospace !important;
   overflow: hidden !important;
+  padding-bottom: 0 !important;  /* 0 padding bottom so textarea doesn't do that weird snapping to position
+                                   when you're trying to type at the bottom and it resizes at the same time. */
 }
 
 .document-text-section {
   font-family: BlinkMacSystemFont, -apple-system, sans-serif;
   position: relative;
   background-color: $white;
-  padding: 180px 40px 350px;
+  padding: 180px 40px;
   width: 50%;
   min-height: 100vh;
   font-size: 16px;
@@ -21,6 +23,7 @@ textarea {
   box-sizing: border-box;
   display: inline-block;
   outline: none;
+  word-wrap: break-word;
   // Expanding is weird with this,
   // also doesn't seem to do much good anyways
   // @include transition(275ms);
