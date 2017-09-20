@@ -86,6 +86,7 @@ class DocumentTextSection extends React.Component {
       // textareaElement.style.height = `${newHeight}px`;
       // Monkey patch textarea autoheight
       textareaElement.addEventListener('input', resizeTextareaOnInput, false)
+      textareaElement.style.height = `${textareaElement.scrollHeight}px`
     }
 
     // Initialize uneditable text section with transpiled text
