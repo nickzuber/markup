@@ -12,29 +12,28 @@
 
 <div align="center">
   <!-- Stability -->
-  <a href="https://nodejs.org/api/documentation.html#documentation_stability_index">
-    <img src="https://img.shields.io/badge/stability-experimental-orange.svg?style=flat-square"
-      alt="API stability" />
+  <a href="#">
+    <img src="https://img.shields.io/badge/stability-beta-fcc419.svg"
+      alt="Stability" />
   </a>
   <!-- NPM version -->
-  <a href="https://npmjs.org/package/choo">
-    <img src="https://img.shields.io/npm/v/choo.svg?style=flat-square"
-      alt="NPM version" />
+  <a href="#">
+    <img src="https://img.shields.io/badge/version-1.0.0-brightgreen.svg"
+      alt="Version" />
   </a>
   <!-- Build Status -->
   <a href="https://travis-ci.org/choojs/choo">
     <img src="https://travis-ci.org/markup-app/markup.svg?branch=master"
       alt="Build Status" />
   </a>
+  <a href="#">
+    <img src="https://img.shields.io/myget/mongodb/v/MongoDB.Driver.Core.svg"
+      alt="Mongo" />
+  </a>
   <!-- License -->
   <a href="https://npmjs.org/package/choo">
     <img src="https://img.shields.io/badge/license-MIT%20Licence-blue.svg"
       alt="License" />
-  </a>
-  <!-- Standard -->
-  <a href="https://standardjs.com">
-    <img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square"
-      alt="Standard" />
   </a>
 </div>
 
@@ -65,9 +64,14 @@
     contributors
   </a>
 </div>
+	
+## Table of Content
+- [Overview](#overview)
+- [How To Use](#usability)
+- [Contributing](#contributing)
+- [License](#license)
 
-Overview
---------
+## Overview
 
 Markup is a web app that lets people easily create and share rich TeX snippets. You can write snippets containing markdown and/or math typesettting - similar to the math typesetting you find in LaTeX distributions!
 
@@ -75,15 +79,13 @@ Write whatever you want, and hit the share button to send what you've created to
 
 You can also save your progress and snippets locally if you want to come back to them later. We use your browser's local storage here, so keep in mind that your locally saved work is connected to your browser!
 
-How To Use
-----------
+## Usability
 
 Want to get started on how to use the KaTeX math typesetting library?
 
 [Check out this handy reference guide](https://khan.github.io/KaTeX/function-support.html)!
 
-Contributing
------
+## Contributing
 
 ```
 $ git clone git@github.com:nickzuber/markup.git
@@ -131,7 +133,6 @@ $ npm run dev & npm run sass &
 
 Code will recompile as you save it in real time (woo!)
 
-License
--------
+## License
 
 This software is free to use under the MIT License. See [this reference](https://opensource.org/licenses/MIT) for license text and copyright information.
