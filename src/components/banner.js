@@ -125,16 +125,27 @@ class Banner extends React.Component {
               {/* Share */}
               {/* TODO: conditional rendering like this is janky, make a function */}
               {this.props.save_post_status !== 'request' &&
-                <span
-                  onClick={() => this.shareDocument()}
-                  className="-banner-text -banner-button -psuedo-link noselect">
-                    Share document
+                <span>
+                  {/* Text button */}
+                  <span
+                    onClick={() => this.shareDocument()}
+                    className="-banner-text -banner-button -psuedo-link noselect -larger-share-link">
+                      Share document
+                  </span>
+                  {/* Icon button */}
+                  <span onClick={() => this.shareDocument()} className={'icon-copy -icon-size -smaller-share-link'} />
                 </span>
               }
               {this.props.save_post_status === 'request' &&
-                <span
-                  className="-banner-text -banner-button -psuedo-link -disabled noselect">
-                    Share document
+                <span>
+                  {/* Text button */}
+                  <span
+                    onClick={() => this.shareDocument()}
+                    className="-banner-text -banner-button -psuedo-link -disabled noselect -larger-share-link">
+                      Share document
+                  </span>
+                  {/* Icon button */}
+                  <span onClick={() => {}} className={'icon-copy -icon-size -smaller-share-link'} />
                 </span>
               }
 
@@ -166,7 +177,7 @@ class Banner extends React.Component {
                 message={
                   <ul className="-ul-message">
                     <h2>How things work.</h2>
-                    <li onClick={() => this.shareDocument()}><span className={'icon-directions-arrow'} />Share document</li>
+                    <li onClick={() => this.shareDocument()}><span className={'icon-copy'} />Share document</li>
                     <li onClick={() => this.saveDocument()}><span className={'icon-cloud-alt'} /> Local save document</li>
                     <li onClick={() => {}}><span className={'icon-bell-alt'} /> Notifications and updates</li>
                     <li><span className={'icon-help'} /> Help and Instructions</li>

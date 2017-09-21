@@ -104,7 +104,8 @@
      
       @include media-query($on-mobile) {
         width: 40%;
-        height: 65px;
+        height: 55px;
+        background: $green;
         padding-right: 15px;
         line-height: 70px;
       }
@@ -116,10 +117,6 @@
       font-weight: 500;
       white-space:nowrap;
       padding: 5px;
-
-      @include media-query($on-mobile) {
-        display: none;
-      }
     }
     .-banner-button {
       color: $dark-green;
@@ -297,4 +294,18 @@
   background: #bdf1cf !important;
   opacity: .5 !important;
   cursor: default !important;
+}
+
+.-smaller-share-link {
+  display: none;
+  @include media-query($on-mobile) {
+    display: inline;
+  }
+}
+
+.-larger-share-link {
+  display: inline;
+  @include media-query($on-mobile) {
+    display: none;
+  }
 }
