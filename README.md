@@ -16,6 +16,13 @@ Write whatever you want, and hit the share button to send what you've created to
 
 You can also save your progress and snippets locally if you want to come back to them later. We use your browser's local storage here, so keep in mind that your locally saved work is connected to your browser!
 
+How To Use
+----------
+
+Want to get started on how to use the KaTeX math typesetting library?
+
+[Check out this handy reference guide](https://khan.github.io/KaTeX/function-support.html)!
+
 Contributing
 -----
 
