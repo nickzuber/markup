@@ -1,8 +1,8 @@
 
-<h1 align="center">markup</h1>
+<h1 align="center">Markup</h1>
 
 <div align="center">
-  <strong>Collaborate and Create</strong>
+  <strong>:turtle: Collaborate and Create :sparkles:</strong>
 </div>
 <div align="center">
   Create & share TeX snippets with rich math typesetting and markdown support.
@@ -44,14 +44,14 @@
     </a>
     <span> | </span>
     <a href="https://khan.github.io/KaTeX/function-support.html">
-      Usability
+      Handbook
     </a>
     <span> | </span>
-    <a href="https://github.com/YerkoPalma/awesome-choo">
-      Ecosystem
+    <a href="https://github.com/markup-app/markup/issues">
+      Issues
     </a>
     <span> | </span>
-    <a href="https://github.com/markup-app/markup/">
+    <a href="https://github.com/markup-app/markup/pullrequest">
       Contributing
     </a>
   </h3>
