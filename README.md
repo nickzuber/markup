@@ -1,11 +1,70 @@
 
-[markup](https://github.com/nickzuber/markup)
-========
+<h1 align="center">markup</h1>
 
-Create & share TeX snippets with rich math typesetting and markdown support.
+<div align="center">
+  <strong>Collaborate and Create</strong>
+</div>
+<div align="center">
+  Create & share TeX snippets with rich math typesetting and markdown support.
+</div>
 
-[![Build Status](https://travis-ci.org/markup-app/markup.svg?branch=master)]()
-[![License](https://img.shields.io/badge/license-MIT%20Licence-blue.svg)]()
+<br />
+
+<div align="center">
+  <!-- Stability -->
+  <a href="https://nodejs.org/api/documentation.html#documentation_stability_index">
+    <img src="https://img.shields.io/badge/stability-experimental-orange.svg?style=flat-square"
+      alt="API stability" />
+  </a>
+  <!-- NPM version -->
+  <a href="https://npmjs.org/package/choo">
+    <img src="https://img.shields.io/npm/v/choo.svg?style=flat-square"
+      alt="NPM version" />
+  </a>
+  <!-- Build Status -->
+  <a href="https://travis-ci.org/choojs/choo">
+    <img src="https://travis-ci.org/markup-app/markup.svg?branch=master"
+      alt="Build Status" />
+  </a>
+  <!-- License -->
+  <a href="https://npmjs.org/package/choo">
+    <img src="https://img.shields.io/badge/license-MIT%20Licence-blue.svg"
+      alt="License" />
+  </a>
+  <!-- Standard -->
+  <a href="https://standardjs.com">
+    <img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square"
+      alt="Standard" />
+  </a>
+</div>
+
+<div align="center">
+  <h3>
+    <a href="https://markup-app.com">
+      Website
+    </a>
+    <span> | </span>
+    <a href="https://khan.github.io/KaTeX/function-support.html">
+      Usability
+    </a>
+    <span> | </span>
+    <a href="https://github.com/YerkoPalma/awesome-choo">
+      Ecosystem
+    </a>
+    <span> | </span>
+    <a href="https://github.com/markup-app/markup/">
+      Contributing
+    </a>
+  </h3>
+</div>
+
+<div align="center">
+  <sub>Built with ❤︎ by
+  <a href="https://nickzuber.com/">Nick Zuber</a> and
+  <a href="https://github.com/markup-app/markup/graphs/contributors">
+    contributors
+  </a>
+</div>
 
 Overview
 --------
