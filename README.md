@@ -1,7 +1,7 @@
 
 <div align="center">
-  <img src=".github/name.png"
-		 width="312px"
+  <img src=".github/name_280.png"
+		 width="280px"
        alt="Markup" />
 </div>
 
