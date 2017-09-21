@@ -251,8 +251,8 @@ class DocumentTextSection extends React.Component {
     var purgedExpressions = [];
 
     // Extract expressions
-    var expressionlessRawText = rawText.replace(/(\$)(?:(?=(\\?))\2.)*?\1/g, function (capturedGroup) {
-      purgedExpressions.push(capturedGroup.replace(/([$]*)/g, ''));
+    var expressionlessRawText = rawText.replace(/(\$)(?:(?=(\\?))\2[\s\S])*?\1/gi, function (capturedGroup) {
+      purgedExpressions.push(capturedGroup.replace(/([$]*)/gi, ''));
       return '$ $';
     });
 
@@ -260,14 +260,14 @@ class DocumentTextSection extends React.Component {
     var markdownFormattedText = this.KramdownParser(expressionlessRawText);
 
     // Fill those expressions back in
-    markdownFormattedText = markdownFormattedText.replace(/(\$)(?:(?=(\\?))\2.)*?\1/g, function (capturedGroup) {
+    markdownFormattedText = markdownFormattedText.replace(/(\$)(?:(?=(\\?))\2[\s\S])*?\1/gi, function (capturedGroup) {
       return `$${purgedExpressions.shift()}$`;
     });
 
     // Parse KaTeX
     try {
-      let KatexParsedResult = markdownFormattedText.replace(/(\$)(?:(?=(\\?))\2.)*?\1/g, function (capturedGroup) {
-        var cleanedString = capturedGroup.replace(/([$]*)/g, '');
+      let KatexParsedResult = markdownFormattedText.replace(/(\$)(?:(?=(\\?))\2[\s\S])*?\1/gi, function (capturedGroup) {
+        var cleanedString = capturedGroup.replace(/([$]*)/gi, '');
         return Katex.renderToString(cleanedString);
       });
       return KatexParsedResult;
