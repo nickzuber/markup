@@ -1,5 +1,9 @@
 
-<h1 align="center">Markup</h1>
+<div align="center">
+  <img src=".github/name.png"
+		 width="312px"
+       alt="Markup" />
+</div>
 
 <div align="center">
   <strong>:turtle: Collaborate and Create :sparkles:</strong>
