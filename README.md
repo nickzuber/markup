@@ -55,7 +55,7 @@
       Issues
     </a>
     <span> | </span>
-    <a href="https://github.com/markup-app/markup/pullrequest">
+    <a href="https://github.com/markup-app/markup/pulls">
       Contributing
     </a>
   </h3>
