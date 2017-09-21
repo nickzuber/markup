@@ -125,16 +125,27 @@ class Banner extends React.Component {
               {/* Share */}
               {/* TODO: conditional rendering like this is janky, make a function */}
               {this.props.save_post_status !== 'request' &&
-                <span
-                  onClick={() => this.shareDocument()}
-                  className="-banner-text -banner-button -psuedo-link noselect">
-                    Share document
+                <span>
+                  {/* Text button */}
+                  <span
+                    onClick={() => this.shareDocument()}
+                    className="-banner-text -banner-button -psuedo-link noselect -larger-share-link">
+                      Share document
+                  </span>
+                  {/* Icon button */}
+                  <span onClick={() => this.shareDocument()} className={'icon-copy -icon-size -smaller-share-link'} />
                 </span>
               }
               {this.props.save_post_status === 'request' &&
-                <span
-                  className="-banner-text -banner-button -psuedo-link -disabled noselect">
-                    Share document
+                <span>
+                  {/* Text button */}
+                  <span
+                    onClick={() => this.shareDocument()}
+                    className="-banner-text -banner-button -psuedo-link -disabled noselect -larger-share-link">
+                      Share document
+                  </span>
+                  {/* Icon button */}
+                  <span onClick={() => this.shareDocument()} className={'icon-copy -icon-size -smaller-share-link'} />
                 </span>
               }
 
