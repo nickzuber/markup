@@ -140,7 +140,7 @@ class Banner extends React.Component {
                 <span>
                   {/* Text button */}
                   <span
-                    onClick={() => this.shareDocument()}
+                    onClick={() => {}}
                     className="-banner-text -banner-button -psuedo-link -disabled noselect -larger-share-link">
                       Share document
                   </span>

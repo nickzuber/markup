@@ -26,7 +26,7 @@
       alt="Version" />
   </a>
   <!-- Build Status -->
-  <a href="https://travis-ci.org/choojs/choo">
+  <a href="#">
     <img src="https://travis-ci.org/markup-app/markup.svg?branch=master"
       alt="Build Status" />
   </a>
@@ -35,7 +35,7 @@
       alt="Mongo" />
   </a>
   <!-- License -->
-  <a href="https://npmjs.org/package/choo">
+  <a href="#">
     <img src="https://img.shields.io/badge/license-MIT%20Licence-blue.svg"
       alt="License" />
   </a>
