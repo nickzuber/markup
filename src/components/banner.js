@@ -139,13 +139,11 @@ class Banner extends React.Component {
               {this.props.save_post_status === 'request' &&
                 <span>
                   {/* Text button */}
-                  <span
-                    onClick={() => {}}
-                    className="-banner-text -banner-button -psuedo-link -disabled noselect -larger-share-link">
+                  <span className="-banner-text -banner-button -psuedo-link -disabled noselect -larger-share-link">
                       Share document
                   </span>
                   {/* Icon button */}
-                  <span onClick={() => {}} className={'icon-copy -icon-size -smaller-share-link'} />
+                  <span className={'icon-copy -icon-size -smaller-share-link'} />
                 </span>
               }
 
